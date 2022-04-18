@@ -5,6 +5,12 @@ import ClientOnly from '../../utils/clientonly'
 
 import { Switch } from '@mantine/core';
 
+import { useSpring, animated } from '@react-spring/web'
+
+import { useToggle } from '@mantine/hooks';
+
+
+
 import tw from 'twin.macro';
 
 const NavBar = () => {
@@ -13,6 +19,14 @@ const NavBar = () => {
   const activeLink = 'text-[#f59e0b] border-orange-400 border-b-4 '
   const link = 'text-slate-500 dark:text-slate-400 border-b-0 hover:border-b-4 hover:border-gray-400'
   const linkStyle = 'inline-block py-4 px-4 mr-1 text-sm font-medium text-center rounded-t-lg hover:border-b-4 '
+
+  const [burger, toggle] = useToggle(false, [false, true]);
+  const props = useSpring(
+    {
+      to: { opacity: 1 },
+      from: { opacity: 0 },
+      delay: 5000
+    })
 
   return (<>
     <div id="navbar" tw="w-full text-gray-700">
@@ -40,30 +54,33 @@ const NavBar = () => {
             </svg>
 
           </div>
-          <button tw="rounded-lg md:hidden ">
+          <button tw="rounded-lg md:hidden " onClick={() => toggle()}>
             <svg fill="currentColor" viewBox="0 0 20 20" tw="w-6 h-6">
-              {true && <path fillRule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM9 15a1 1 0 011-1h6a1 1 0 110 2h-6a1 1 0 01-1-1z" clipRule="evenodd"></path>}
-              {true && <path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd"></path>}
+              {!burger && <path fillRule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM9 15a1 1 0 011-1h6a1 1 0 110 2h-6a1 1 0 01-1-1z" clipRule="evenodd"></path>}
+              {burger && <path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd"></path>}
             </svg>
           </button>
         </div>
-        {/*toggle between flex and flex and hidden*/}
-        <nav tw=" flex flex-col flex-grow pb-4 md:pb-0 md:flex md:justify-end md:flex-row">
+        {burger && <nav tw=" flex flex-col flex-grow pb-4 md:pb-0 md:flex md:items-center md:space-x-2 md:justify-end md:flex-row">
           {/*  <Button color="primary" variant="solid" size="lg">xdede</Button> */}
-          {[["Home","/"], ["About","about"], ["Porfolio","portfolio"]].map((item: any, index: number) => (
-            <Link href="/">
-              <a tw="px-4 py-2 mt-2 text-sm font-semibold bg-transparent rounded-lg" 
-              css={[
-                tw`flex`
-              ]}
-              >{item}</a>
+          {[["Home", "/"], ["About", "about"], ["Porfolio", "portfolio"]].map((item: any, index: number) => (
+            <Link href={item[1]}>
+              <a
+                css={[
+                  tw`px-4 py-2 mt-2 text-sm font-semibold bg-transparent rounded-lg cursor-pointer`,
+                  router.pathname == item[1] ? tw`bg-special-bg text-white` : tw`text-special hover:bg-base-100`,
+                  router.pathname == "/" ? "active" : ""
+                ]}
+              >{item[0]}</a>
             </Link>
           ))}
-         
+
           <ClientOnly>
-            {<Switch color="primary" checked={true} />}
+            {<Switch tw="mt-2" color="primary" checked={true} />}
+            <animated.div style={props}>I will fade in</animated.div>
           </ClientOnly>
-        </nav>
+        </nav>}
+
       </div>
     </div>
   </>);

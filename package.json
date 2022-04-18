@@ -17,6 +17,7 @@
     "@mantine/core": "^3.6.7",
     "@mantine/hooks": "^3.6.7",
     "@mantine/next": "^3.6.7",
+    "@react-spring/web": "^9.4.4",
     "jotai": "^1.6.0",
     "next": "latest",
     "react": "^17.0.2",
