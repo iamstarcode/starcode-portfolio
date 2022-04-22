@@ -3,12 +3,12 @@ import tw, { css } from "twin.macro"
 const stylesBase = css`
   .light {
     --bg-color: rgba(255,255,255, 1);
-    --text-color: rgba(60,41,71, 1);
+    --text-color: rgba(61,40,70,1);
     --text-soft-color: rgba(82,69,91, 1);
     --text-strong-color: rgba(74,74,74, 1);
     --subtle-color: rgba(251,248,253, 1);
     --border-color: rgba(237,227,245, 1);
-    --shadow-color: rgba(204,183,219, 1);
+    --shadow-color: rgba(204,183,219, 0.4);
     --input-color: rgba(255,255,255, 1);
     --outline-color: rgba(209,181,228, 1);
     --mark-color: rgba(178,85,222, 0.08);
@@ -34,12 +34,12 @@ const stylesBase = css`
   }
   .dark {
     --bg-color: rgba(32,32,32, 1);
-    --text-color: rgba(225,222,228, 1);
+    --text-color: rgba(226,222,228,1);
     --text-soft-color: rgba(190,186,192, 1);
     --text-strong-color: rgba(187,187,187, 1);
     --subtle-color: rgba(38,35,41, 1);
     --border-color: rgba(53,45,59, 1);
-    --shadow-color: rgba(0,0,0, 1);
+    --shadow-color: rgba(0,0,0, 0.3);
     --input-color: rgba(28,28,28, 1);
     --outline-color: rgba(187,141,214, 1);
     --mark-color: rgba(173,116,205, 0.08);
@@ -64,7 +64,7 @@ const stylesBase = css`
     --light-color-rgb: 224,205,237;
   }
   body {
-    ${tw`bg-subtle text-primary transition-all duration-200`}
+    ${tw`bg-subtle transition-all duration-200`}
   }
 `
 

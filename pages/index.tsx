@@ -3,6 +3,9 @@ import tw from 'twin.macro'
 import { Button, Logo } from '../components'
 import ThemeToggle from '../components/ThemeToggle'
 import DefaultLayout from '../layouts/default'
+import Image from 'next/image'
+
+import {BiMap} from 'react-icons/bi'
 
 const styles = {
   // Move long class sets out of jsx to keep it scannable
@@ -17,27 +20,39 @@ const App = () => (
     <div tw="w-full grid grid-cols-1 lg:grid-cols-2">
 
       <div>
-        <h2 tw=" text-sm text-center lg:(text-left text-lg) font-bold mt-5">
+        <h2 tw=" text-sm text-center text-text-color lg:(text-left text-lg) font-bold mt-5">
           Hi!, I'm Bakare Abiola alias!
         </h2>
-        <h2 tw="text-6xl mt-2 text-center">Starcode</h2>
+        <h2 tw="text-6xl mt-2 text-center text-special lg:(text-left)">Starcode</h2>
 
-        <h2 tw=" text-sm text-center lg:(text-left text-lg) font-bold mt-5">
+        <h2 tw=" text-sm text-center text-text-color lg:(text-left text-lg) font-bold mt-5">
           catchy right? Lol
         </h2>
 
-        <h2 tw=" text-sm text-[rgba(57,41,74,1)] text-align[justify] lg:(text-left text-lg) font-bold mt-5">
+        <h2 tw=" text-sm text-text-color text-align[justify] lg:(text-left text-lg) font-bold mt-5">
           Starcode is a freelancer and a front-end developer, with a passion for building and delivering great ideas into digital products.
 
           When he's not writting codes, He hang's out with Bruce Wayne, am not kidding I hang out with batsy! Loves to play COD after long hours writting codes.
-        
+
           Loves  learning new things and also sharing with the community and also support new devs trasitioning into tech,
 
         </h2>
       </div>
 
       <div tw="w-full flex justify-center">
-        <div tw="w-52 h-52 mt-5 shadow-xl rounded-xl">
+        <div tw="w-52 h-52 mt-5  box-shadow[ 0rem 0.5rem calc(4 * 0.5rem) var(--shadow-color)] rounded-xl">
+          <div tw="flex flex-col items-center justify-center py-5">
+            <Image
+              src="/img/me.jpg"
+              height="108"
+              width="108"
+              alt="starcode picture"
+              
+              tw="rounded-full h-16 w-16"
+            />
+            <h2 tw="text-xs text-special font-medium mt-2">Bakare Abiola</h2>
+            <div tw="inline-flex items-center mt-2 "> <BiMap color="red"/> <p tw="text-sm text-text-color">Gotham</p></div>
+          </div>
         </div>
       </div>
 
