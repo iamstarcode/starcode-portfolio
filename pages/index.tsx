@@ -1,11 +1,15 @@
-import { ReactElement } from 'react'
+import { Children, ReactElement } from 'react'
 import tw from 'twin.macro'
 import { Button, Logo } from '../components'
 import ThemeToggle from '../components/ThemeToggle'
 import DefaultLayout from '../layouts/default'
 import Image from 'next/image'
 
-import {BiMap} from 'react-icons/bi'
+import { useSpring, animated, config, easings } from '@react-spring/web'
+
+
+import { BiMap } from 'react-icons/bi'
+import { FaReact } from 'react-icons/fa'
 
 const styles = {
   // Move long class sets out of jsx to keep it scannable
@@ -13,12 +17,36 @@ const styles = {
     tw`flex flex-col items-center justify-center h-screen`,
     hasBackground && tw`bg-gradient-to-b from-electric to-ribbon`,
   ],
+
+  card:tw` w-10 h-10 flex justify-center items-center bg-base-100 box-shadow[ 0rem 0.5rem calc(4 * 0.5rem) var(--shadow-color)] rounded-lg`
+  
 }
 
-const App = () => (
-  < >
-    <div tw="w-full grid grid-cols-1 lg:grid-cols-2">
 
+
+const card = ({ children }: { children: ReactElement }) => {
+  return  <div tw="relative w-52 h-52 mt-5 shadow-inner  box-shadow[ 0rem 0.5rem calc(4 * 0.5rem) var(--shadow-color)] rounded-xl">
+    {children}
+  </div>
+}
+
+const App = () => {
+
+  const myCard = useSpring({
+    loop: { reverse: true },
+    from: { y: 0 },
+    to: { y: -5 },
+    config: {
+      duration: 2000,
+      easing: easings.easeInSine,
+    }
+  })
+
+
+
+
+  return <>
+    <div tw="w-full grid grid-cols-1 lg:grid-cols-2">
       <div>
         <h2 tw=" text-sm text-center text-text-color lg:(text-left text-lg) font-bold mt-5">
           Hi!, I'm Bakare Abiola alias!
@@ -40,18 +68,27 @@ const App = () => (
       </div>
 
       <div tw="w-full flex justify-center">
-        <div tw="w-52 h-52 mt-5  box-shadow[ 0rem 0.5rem calc(4 * 0.5rem) var(--shadow-color)] rounded-xl">
-          <div tw="flex flex-col items-center justify-center py-5">
+        <div tw="relative w-52 h-52 mt-5  box-shadow[ 0rem 0.5rem calc(4 * 0.5rem) var(--shadow-color)] rounded-xl"
+        >
+          <animated.div
+            style={myCard}
+            css={[styles.card, tw`absolute top-0 -left-5`]}
+          >
+              <FaReact size="24" color="cyan" />
+          </animated.div>
+          <div
+            tw="flex flex-col items-center justify-center py-5"
+          >
             <Image
               src="/img/me.jpg"
               height="108"
               width="108"
               alt="starcode picture"
-              
+
               tw="rounded-full h-16 w-16"
             />
             <h2 tw="text-xs text-special font-medium mt-2">Bakare Abiola</h2>
-            <div tw="inline-flex items-center mt-2 "> <BiMap color="red"/> <p tw="text-sm text-text-color">Gotham</p></div>
+            <div tw="inline-flex items-center mt-2 "> <BiMap color="red" /> <p tw="text-sm text-text-color">Gotham</p></div>
           </div>
         </div>
       </div>
@@ -67,7 +104,8 @@ const App = () => (
       <ThemeToggle />
     </div>
   </>
-)
+}
+
 
 App.getLayout = function getLayout(page: ReactElement) {
   return (<DefaultLayout>{page}</DefaultLayout>)
