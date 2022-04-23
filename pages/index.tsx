@@ -76,6 +76,14 @@ const App = () => {
           >
               <FaReact size="24" color="cyan" />
           </animated.div>
+
+          <animated.div
+            style={myCard}
+            css={[styles.card, tw`absolute top-0 -left-5`]}
+          >
+              <FaReact size="24" color="cyan" />
+          </animated.div>
+          
           <div
             tw="flex flex-col items-center justify-center py-5"
           >
