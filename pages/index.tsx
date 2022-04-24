@@ -36,7 +36,7 @@ const App = () => {
 
   const { ref, inView, entry } = useInView({
     /* Optional options */
-    threshold: 0,
+    //threshold: 0,
 
   });
 
@@ -51,12 +51,12 @@ const App = () => {
   })
 
   const headerStyle = useSpring({
-    from: { opacity: 0, x: 500 },
+    from: { opacity: 0, translateX: 500 },
     to: {
       opacity: inView ? 1 : 0,
-      x: inView ? 0 : 500
+      translateX: inView ? 0 : 500
     },
-    config: config.wobbly
+    config: {duration:500}
   });
 
 
@@ -119,8 +119,8 @@ const App = () => {
         </div>
       </div>
 
-      <div ref={ref} tw="flex justify-center items-center">
-        <animated.div  style={headerStyle} tw="">
+      <div ref={ref} tw="w-full flex justify-center">
+        <animated.div  style={headerStyle}>
           <div tw="relative flex justify-center items-center w-52 h-52 mt-5  box-shadow[ 0rem 0.5rem calc(4 * 0.5rem) var(--shadow-color)] rounded-xl"
           >
             <animated.div
