@@ -48,7 +48,7 @@ const App = () => {
       opacity: inView ? 1 : 0,
       left: inView ?  "0px" : "-500px"
     },
-    config: config.stiff
+    config: config.molasses
   });
 
 
