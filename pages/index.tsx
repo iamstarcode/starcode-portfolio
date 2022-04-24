@@ -9,7 +9,7 @@ import { useSpring, animated, config, easings } from '@react-spring/web'
 
 import { useInView } from 'react-intersection-observer';
 
-//import AOS from "aos";
+import AOS from "aos";
 import "aos/dist/aos.css";
 
 
@@ -30,8 +30,8 @@ const styles = {
 const App = () => {
 
   useEffect(() => {
-    //AOS.init();
-    //AOS.refresh();
+    AOS.init();
+    AOS.refresh();
   }, []);
 
 
@@ -120,7 +120,7 @@ const App = () => {
       </div>
 
       <div ref={ref} tw="w-full flex justify-center">
-        <animated.div style={headerStyle} tw="w-full flex justify-center">
+        <animated.div style={headerStyle}>
           <div tw="relative flex justify-center items-center w-52 h-52 mt-5  box-shadow[ 0rem 0.5rem calc(4 * 0.5rem) var(--shadow-color)] rounded-xl"
           >
             <animated.div
