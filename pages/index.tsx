@@ -9,7 +9,7 @@ import { useSpring, animated, config, easings } from '@react-spring/web'
 
 import { useInView } from 'react-intersection-observer';
 
-import AOS from "aos";
+//import AOS from "aos";
 import "aos/dist/aos.css";
 
 
@@ -30,8 +30,8 @@ const styles = {
 const App = () => {
 
   useEffect(() => {
-    AOS.init();
-    AOS.refresh();
+    //AOS.init();
+    //AOS.refresh();
   }, []);
 
 
