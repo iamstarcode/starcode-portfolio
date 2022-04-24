@@ -89,7 +89,7 @@ const App = () => {
 
 
       <div
-        data-aos="fade-right"
+        data-aos="fade-up-right"
         data-aos-offset="300"
         tw="w-full flex justify-center">
         <div tw="relative w-52 h-52 mt-5  box-shadow[ 0rem 0.5rem calc(4 * 0.5rem) var(--shadow-color)] rounded-xl"
@@ -119,7 +119,7 @@ const App = () => {
         </div>
       </div>
 
-      <div ref={ref} tw="w-full flex justify-center">
+      <div ref={ref} tw="flex justify-center items-center">
         <animated.div  style={headerStyle}>
           <div tw="relative flex justify-center items-center w-52 h-52 mt-5  box-shadow[ 0rem 0.5rem calc(4 * 0.5rem) var(--shadow-color)] rounded-xl"
           >
