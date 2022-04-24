@@ -7,9 +7,6 @@ import Image from 'next/image'
 
 import { useSpring, animated, config, easings } from '@react-spring/web'
 
-import { useInView } from 'react-intersection-observer';
-
-
 
 import { AnimationOnScroll } from 'react-animation-on-scroll';
 import "animate.css/animate.min.css";
@@ -31,12 +28,6 @@ const styles = {
 const App = () => {
 
 
-  const { ref, inView, entry } = useInView({
-    /* Optional options */
-    //threshold: 0,
-
-  });
-
   const myCard = useSpring({
     loop: { reverse: true },
     from: { y: 0 },
@@ -46,15 +37,6 @@ const App = () => {
       easing: easings.easeInSine,
     }
   })
-
-  const headerStyle = useSpring({
-    from: { opacity: 0, translateX: 500 },
-    to: {
-      opacity: inView ? 1 : 0,
-      translateX: inView ? 0 : 500
-    },
-    config: { duration: 500 }
-  });
 
 
   return <>
@@ -89,14 +71,14 @@ const App = () => {
           >
             <animated.div
               style={myCard}
-              css={[styles.card, tw`absolute top-0 -left-5`]}
+              css={[styles.card, tw`absolute top-5 -left-5`]}
             >
               <FaReact size="24" color="cyan" />
             </animated.div>
 
             <animated.div
               style={myCard}
-              css={[styles.card, tw`absolute top-0 -left-5`]}
+              css={[styles.card, tw`absolute bottom-0 -left-5`]}
             >
               <FaReact size="24" color="cyan" />
             </animated.div>
