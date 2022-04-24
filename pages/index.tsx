@@ -56,7 +56,7 @@ const App = () => {
       opacity: inView ? 1 : 0,
       x: inView ? 0 : 500
     },
-    config: config.molasses
+    config: config.wobbly
   });
 
 
@@ -119,7 +119,7 @@ const App = () => {
         </div>
       </div>
 
-      <div ref={ref} tw="flex justify-center">
+      <div ref={ref} tw="flex justify-center items-center">
         <animated.div  style={headerStyle} tw="">
           <div tw="relative flex justify-center items-center w-52 h-52 mt-5  box-shadow[ 0rem 0.5rem calc(4 * 0.5rem) var(--shadow-color)] rounded-xl"
           >
