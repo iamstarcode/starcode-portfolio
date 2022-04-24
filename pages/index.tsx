@@ -9,11 +9,9 @@ import { useSpring, animated, config, easings } from '@react-spring/web'
 
 import { useInView } from 'react-intersection-observer';
 
-import AOS from "aos";
-import "aos/dist/aos.css";
+
 
 import { AnimationOnScroll } from 'react-animation-on-scroll';
-
 import "animate.css/animate.min.css";
 
 import { BiMap } from 'react-icons/bi'
@@ -31,10 +29,6 @@ const styles = {
 }
 
 const App = () => {
-  useEffect(() => {
-    AOS.init();
-    AOS.refresh();
-  }, []);
 
 
   const { ref, inView, entry } = useInView({
@@ -65,7 +59,7 @@ const App = () => {
 
   return <>
     <div tw="w-full grid grid-cols-1 lg:grid-cols-2">
-      <div>
+      <AnimationOnScroll animateIn="animate__bounceInLeft">
         <h2
           data-aos="fade-right"
           data-aos-offset="300"
@@ -79,85 +73,16 @@ const App = () => {
           catchy right? Lol
         </h2>
 
-        <animated.h2 tw="block text-sm text-text-color text-align[justify] lg:(text-left text-lg) font-bold mt-5">
+        <h2 tw="block text-sm text-text-color text-align[justify] lg:(text-left text-lg) font-bold mt-5">
           Starcode is a freelancer and a front-end developer, with a passion for building and delivering great ideas into digital products.
 
           When he's not writting codes, He hang's out with Bruce Wayne, am not kidding I hang out with batsy! Loves to play COD after long hours writting codes.
 
           Loves  learning new things and also sharing with the community and also support new devs trasitioning into tech,
 
-        </animated.h2>
-      </div>
+        </h2>
+      </AnimationOnScroll>
 
-
-
-      <div
-        data-aos="fade-up-right"
-        data-aos-offset="300"
-        tw="w-full flex justify-center">
-        <div tw="relative w-52 h-52 mt-5  box-shadow[ 0rem 0.5rem calc(4 * 0.5rem) var(--shadow-color)] rounded-xl"
-        >
-          <animated.div
-            style={myCard}
-            css={[styles.card, tw`absolute top-0 -left-5`]}
-          >
-            <FaReact size="24" color="cyan" />
-          </animated.div>
-
-
-          <div
-            tw="flex flex-col items-center justify-center py-5"
-          >
-            <Image
-              src="/img/me.jpg"
-              height="108"
-              width="108"
-              alt="starcode picture"
-
-              tw="rounded-full h-16 w-16"
-            />
-            <h2 tw="text-xs text-special font-medium mt-2">Bakare Abiola</h2>
-            <div tw="inline-flex items-center mt-2 "> <BiMap color="red" /> <p tw="text-sm text-text-color">Gotham</p></div>
-          </div>
-        </div>
-      </div>
-
-     {/*  <div ref={ref} tw="flex justify-center items-center">
-        <animated.div style={headerStyle}>
-          <div tw="relative flex justify-center items-center w-52 h-52 mt-5  box-shadow[ 0rem 0.5rem calc(4 * 0.5rem) var(--shadow-color)] rounded-xl"
-          >
-            <animated.div
-              style={myCard}
-              css={[styles.card, tw`absolute top-0 -left-5`]}
-            >
-              <FaReact size="24" color="cyan" />
-            </animated.div>
-
-            <animated.div
-              style={myCard}
-              css={[styles.card, tw`absolute top-0 -left-5`]}
-            >
-              <FaReact size="24" color="cyan" />
-            </animated.div>
-
-            <div
-              tw="flex flex-col items-center justify-center py-5"
-            >
-              <Image
-                src="/img/me.jpg"
-                height="108"
-                width="108"
-                alt="starcode picture"
-
-                tw="rounded-full h-16 w-16"
-              />
-              <h2 tw="text-xs text-special font-medium mt-2">Bakare Abiola</h2>
-              <div tw="inline-flex items-center mt-2 "> <BiMap color="red" /> <p tw="text-sm text-text-color">Gotham</p></div>
-            </div>
-          </div>
-        </animated.div>
-      </div>
- */}
       <div tw="w-full flex justify-center items-center">
         <AnimationOnScroll  animateIn="animate__bounceIn">
           <div tw="relative flex justify-center items-center w-52 h-52 mt-5  box-shadow[ 0rem 0.5rem calc(4 * 0.5rem) var(--shadow-color)] rounded-xl"
