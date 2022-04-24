@@ -51,10 +51,10 @@ const App = () => {
   })
 
   const headerStyle = useSpring({
-    from: { opacity: 0, translateX: 500 },
+    from: { opacity: 0, x: 500 },
     to: {
       opacity: inView ? 1 : 0,
-      translateX: inView ? 0 : 500
+      x: inView ? 0 : 500
     },
     config: config.molasses
   });
@@ -119,8 +119,8 @@ const App = () => {
         </div>
       </div>
 
-      <div ref={ref}  tw="flex justify-center">
-        <animated.div  style={headerStyle} tw="relative">
+      <div ref={ref} tw="block">
+        <animated.div  style={headerStyle} tw="flex justify-center">
           <div tw="relative flex justify-center items-center w-52 h-52 mt-5  box-shadow[ 0rem 0.5rem calc(4 * 0.5rem) var(--shadow-color)] rounded-xl"
           >
             <animated.div
