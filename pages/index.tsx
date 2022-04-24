@@ -56,7 +56,7 @@ const App = () => {
       opacity: inView ? 1 : 0,
       translateX: inView ? 0 : 500
     },
-    config: config.wobbly
+    config: config.molasses
   });
 
 
