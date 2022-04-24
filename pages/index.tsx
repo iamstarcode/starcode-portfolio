@@ -7,6 +7,9 @@ import Image from 'next/image'
 
 import { useSpring, animated, config, easings } from '@react-spring/web'
 
+import { useInView } from 'react-intersection-observer';
+
+
 
 import { BiMap } from 'react-icons/bi'
 import { FaReact } from 'react-icons/fa'
@@ -18,20 +21,17 @@ const styles = {
     hasBackground && tw`bg-gradient-to-b from-electric to-ribbon`,
   ],
 
-  card:tw` w-10 h-10 flex justify-center items-center bg-base-100 box-shadow[ 0rem 0.5rem calc(4 * 0.5rem) var(--shadow-color)] rounded-lg`
-  
-}
+  card: tw` w-10 h-10 flex justify-center items-center bg-base-100 box-shadow[ 0rem 0.5rem calc(4 * 0.5rem) var(--shadow-color)] rounded-lg`
 
-
-
-const card = ({ children }: { children: ReactElement }) => {
-  return  <div tw="relative w-52 h-52 mt-5 shadow-inner  box-shadow[ 0rem 0.5rem calc(4 * 0.5rem) var(--shadow-color)] rounded-xl">
-    {children}
-  </div>
 }
 
 const App = () => {
 
+  const { ref, inView, entry } = useInView({
+    /* Optional options */
+    threshold: 0,
+  });
+  
   const myCard = useSpring({
     loop: { reverse: true },
     from: { y: 0 },
@@ -42,7 +42,14 @@ const App = () => {
     }
   })
 
-
+  const headerStyle = useSpring({
+    from: { opacity: 0, left: "-500px" },
+    to: {
+      opacity: inView ? 1 : 0,
+      left: inView ?  "0px" : "-500px"
+    },
+    config: config.stiff
+  });
 
 
   return <>
@@ -57,33 +64,35 @@ const App = () => {
           catchy right? Lol
         </h2>
 
-        <h2 tw=" text-sm text-text-color text-align[justify] lg:(text-left text-lg) font-bold mt-5">
+        <animated.h2 ref={ref} style={headerStyle} tw=" text-sm text-text-color text-align[justify] lg:(text-left text-lg) font-bold mt-5">
           Starcode is a freelancer and a front-end developer, with a passion for building and delivering great ideas into digital products.
 
           When he's not writting codes, He hang's out with Bruce Wayne, am not kidding I hang out with batsy! Loves to play COD after long hours writting codes.
 
           Loves  learning new things and also sharing with the community and also support new devs trasitioning into tech,
 
-        </h2>
+        </animated.h2>
       </div>
 
-      <div tw="w-full flex justify-center">
+     
+
+      <animated.div style={headerStyle} tw="relative w-full flex justify-center">
         <div tw="relative w-52 h-52 mt-5  box-shadow[ 0rem 0.5rem calc(4 * 0.5rem) var(--shadow-color)] rounded-xl"
         >
           <animated.div
             style={myCard}
             css={[styles.card, tw`absolute top-0 -left-5`]}
           >
-              <FaReact size="24" color="cyan" />
+            <FaReact size="24" color="cyan" />
           </animated.div>
 
           <animated.div
             style={myCard}
             css={[styles.card, tw`absolute top-0 -left-5`]}
           >
-              <FaReact size="24" color="cyan" />
+            <FaReact size="24" color="cyan" />
           </animated.div>
-          
+
           <div
             tw="flex flex-col items-center justify-center py-5"
           >
@@ -99,7 +108,7 @@ const App = () => {
             <div tw="inline-flex items-center mt-2 "> <BiMap color="red" /> <p tw="text-sm text-text-color">Gotham</p></div>
           </div>
         </div>
-      </div>
+      </animated.div>
 
       <div className="lg:col-span-2 flex flex-col  py-6">
 
