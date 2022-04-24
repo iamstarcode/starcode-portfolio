@@ -12,6 +12,9 @@ import { useInView } from 'react-intersection-observer';
 import AOS from "aos";
 import "aos/dist/aos.css";
 
+import { AnimationOnScroll } from 'react-animation-on-scroll';
+
+import "animate.css/animate.min.css";
 
 import { BiMap } from 'react-icons/bi'
 import { FaReact } from 'react-icons/fa'
@@ -56,7 +59,7 @@ const App = () => {
       opacity: inView ? 1 : 0,
       translateX: inView ? 0 : 500
     },
-    config: {duration:500}
+    config: { duration: 500 }
   });
 
 
@@ -119,8 +122,8 @@ const App = () => {
         </div>
       </div>
 
-      <div ref={ref} tw="flex justify-center items-center">
-        <animated.div  style={headerStyle}>
+     {/*  <div ref={ref} tw="flex justify-center items-center">
+        <animated.div style={headerStyle}>
           <div tw="relative flex justify-center items-center w-52 h-52 mt-5  box-shadow[ 0rem 0.5rem calc(4 * 0.5rem) var(--shadow-color)] rounded-xl"
           >
             <animated.div
@@ -153,6 +156,42 @@ const App = () => {
             </div>
           </div>
         </animated.div>
+      </div>
+ */}
+      <div tw="w-full flex justify-center items-center">
+        <AnimationOnScroll  animateIn="animate__bounceIn">
+          <div tw="relative flex justify-center items-center w-52 h-52 mt-5  box-shadow[ 0rem 0.5rem calc(4 * 0.5rem) var(--shadow-color)] rounded-xl"
+          >
+            <animated.div
+              style={myCard}
+              css={[styles.card, tw`absolute top-0 -left-5`]}
+            >
+              <FaReact size="24" color="cyan" />
+            </animated.div>
+
+            <animated.div
+              style={myCard}
+              css={[styles.card, tw`absolute top-0 -left-5`]}
+            >
+              <FaReact size="24" color="cyan" />
+            </animated.div>
+
+            <div
+              tw="flex flex-col items-center justify-center py-5"
+            >
+              <Image
+                src="/img/me.jpg"
+                height="108"
+                width="108"
+                alt="starcode picture"
+
+                tw="rounded-full h-16 w-16"
+              />
+              <h2 tw="text-xs text-special font-medium mt-2">Bakare Abiola</h2>
+              <div tw="inline-flex items-center mt-2 "> <BiMap color="red" /> <p tw="text-sm text-text-color">Gotham</p></div>
+            </div>
+          </div>
+        </AnimationOnScroll>
       </div>
 
 
