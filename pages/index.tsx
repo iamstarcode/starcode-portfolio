@@ -28,7 +28,6 @@ const styles = {
 }
 
 const App = () => {
-
   useEffect(() => {
     AOS.init();
     AOS.refresh();
@@ -38,6 +37,7 @@ const App = () => {
   const { ref, inView, entry } = useInView({
     /* Optional options */
     threshold: 0,
+
   });
 
   const myCard = useSpring({
@@ -91,7 +91,7 @@ const App = () => {
       <div
         data-aos="fade-right"
         data-aos-offset="300"
-        tw="relative w-full flex justify-center">
+        tw="w-full flex justify-center">
         <div tw="relative w-52 h-52 mt-5  box-shadow[ 0rem 0.5rem calc(4 * 0.5rem) var(--shadow-color)] rounded-xl"
         >
           <animated.div
@@ -119,8 +119,8 @@ const App = () => {
         </div>
       </div>
 
-      <div ref={ref} tw="w-full flex justify-center">
-        <animated.div style={headerStyle}>
+      <div ref={ref}  tw="flex justify-center">
+        <animated.div  style={headerStyle} tw="relative">
           <div tw="relative flex justify-center items-center w-52 h-52 mt-5  box-shadow[ 0rem 0.5rem calc(4 * 0.5rem) var(--shadow-color)] rounded-xl"
           >
             <animated.div
