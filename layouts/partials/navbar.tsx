@@ -61,7 +61,7 @@ const NavBar = () => {
             </svg>
           </button>
         </div>
-        {burger && <nav tw=" flex flex-col flex-grow pb-4 md:pb-0 md:flex md:items-center md:space-x-2 md:justify-end md:flex-row">
+        <nav css={[!burger && tw`hidden`, burger && tw`flex`]} tw="w-full flex-col flex-grow pb-4 md:pb-0 md:flex md:items-center md:space-x-2 md:justify-end md:flex-row">
           {/*  <Button color="primary" variant="solid" size="lg">xdede</Button> */}
           {[["Home", "/"], ["About", "about"], ["Porfolio", "portfolio"]].map((item: any, index: number) => (
             <Link href={item[1]}>
@@ -79,7 +79,7 @@ const NavBar = () => {
             {<Switch tw="mt-2" color="primary" checked={true} />}
             <animated.div style={props}>I will fade in</animated.div>
           </ClientOnly>
-        </nav>}
+        </nav>
 
       </div>
     </div>
