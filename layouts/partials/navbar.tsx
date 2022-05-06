@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 
 import ClientOnly from '../../utils/clientonly'
 
-import { Switch } from '@mantine/core';
+import { Affix, Switch, Button, ActionIcon } from '@mantine/core';
 
 import { useSpring, animated } from '@react-spring/web'
 

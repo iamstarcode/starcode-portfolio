@@ -1,4 +1,4 @@
-import { Children, ReactElement, useEffect } from 'react'
+import { Children, Dispatch, ReactElement, SetStateAction, useEffect, useState } from 'react'
 import tw from 'twin.macro'
 import { Button, Logo } from '../components'
 import ThemeToggle from '../components/ThemeToggle'
@@ -11,8 +11,15 @@ import { useSpring, animated, config, easings } from '@react-spring/web'
 import { AnimationOnScroll } from 'react-animation-on-scroll';
 import "animate.css/animate.min.css";
 
+import { Affix, Switch, ActionIcon } from '@mantine/core';
+
+import { BiMoon } from 'react-icons/bi';
+
+
+
 import { BiMap } from 'react-icons/bi'
-import { FaReact } from 'react-icons/fa'
+import { FaHtml5, FaReact } from 'react-icons/fa'
+import { SiCss3, SiNextdotjs, SiTailwindcss } from 'react-icons/si'
 
 const styles = {
   // Move long class sets out of jsx to keep it scannable
@@ -25,21 +32,82 @@ const styles = {
 
 }
 
+const rand = (min: number, max: number) => {
+  return { x: Math.floor(min + Math.random() * (max - min)), y: Math.floor(min + Math.random() * (max - min)) }
+}
+
+const useMySpring = ({ min, max }: { min: number, max: number }) => {
+
+  const [reactPos, setReactPos] = useState({ x: -5, y: 0 })
+  //const [spring, setSptong] = useSpring
+  useEffect(() => {
+    setInterval(() => {
+      const { x, y } = rand(-min, max)
+      setReactPos({ x, y })
+    }, 5000)
+
+  }, [])
+
+  return useSpring({
+    from: { y: 0, x: 0 },
+    to: { y: reactPos.y, x: reactPos.x },
+    config: config.molasses
+  })
+}
+
+const setSpring = ({ xPos, yPos }: { xPos: number, yPos: number }) => {
+  return useSpring({
+    from: { y: 0, x: 0 },
+    to: { y: yPos, x: xPos },
+    config: config.molasses
+  })
+}
+
+const setIntervalX = (setNextPos: Dispatch<SetStateAction<{
+  x: number;
+  y: number;
+}>>) => {
+  setInterval(() => {
+    const { x, y } = rand(-100, 200)
+    setNextPos({ x, y })
+  }, 5000)
+}
 const App = () => {
 
+  const [htmlPos, setHtmlPos] = useState({ x: -5, y: 0 })
+  const [cssPos, setCSSPos] = useState({ x: -5, y: 0 })
+  const [tailwindPos, setTailwindPos] = useState({ x: 5, y: 0 })
+  const [javaScriptPos, setJavasriptPos] = useState({ x: -5, y: 0 })
+  const [reactPos, setReactPos] = useState({ x: -5, y: 0 })
+  const [nextPos, setNextPos] = useState({ x: -5, y: 0 })
 
-  const myCard = useSpring({
-    loop: { reverse: true },
-    from: { y: 0 },
-    to: { y: -5 },
-    config: {
-      duration: 2000,
-      easing: easings.easeInSine,
-    }
-  })
+
+  const reactSpring = setSpring({xPos:reactPos.x,yPos:reactPos.y})
+  const html5Spring = setSpring({ yPos: htmlPos.y, xPos: htmlPos.x })
+  const nextSpring = setSpring({ yPos: nextPos.y, xPos: nextPos.x })
+  const cssSpring = setSpring({ yPos: cssPos.y, xPos: cssPos.x })
+  const tailwindSpring = setSpring({ yPos: tailwindPos.y, xPos: tailwindPos.x })
+  const javascriptSpring = setSpring({ yPos: javaScriptPos.y, xPos: javaScriptPos.x })
+
+  useEffect(() => {
+    setIntervalX(setHtmlPos)
+    setIntervalX(setReactPos)
+    setIntervalX(setNextPos)
+    setIntervalX(setCSSPos)
+    setIntervalX(setTailwindPos)
+    setIntervalX(setJavasriptPos)
+
+  }, [])
+
+
 
 
   return <>
+    <Affix position={{ bottom: 20, right: 10 }}>
+      <ActionIcon variant="filled" size="lg" tw="bg-special-bg">
+        <BiMoon size="24" />
+      </ActionIcon>
+    </Affix>
     <div tw="w-full grid grid-cols-1 lg:grid-cols-2">
       <AnimationOnScroll animateIn="animate__bounceInLeft">
         <h2
@@ -65,24 +133,45 @@ const App = () => {
         </h2>
       </AnimationOnScroll>
 
-      <div tw="w-full flex justify-center items-center">
-        <AnimationOnScroll  animateIn="animate__bounceIn">
+      <div tw="w-full relative flex justify-center items-center">
+        <AnimationOnScroll animateIn="animate__bounceIn">
           <div tw="relative flex justify-center items-center w-52 h-52 mt-5  box-shadow[ 0rem 0.5rem calc(4 * 0.5rem) var(--shadow-color)] rounded-xl"
           >
+              <animated.div
+              style={html5Spring}
+              css={[styles.card, tw`absolute top-0 -left-8 z-40`]}
+            >
+              <FaHtml5 size="24" color="orange" />
+            </animated.div>
+
             <animated.div
-              style={myCard}
-              css={[styles.card, tw`absolute top-5 -left-5`]}
+              style={reactSpring}
+              css={[styles.card, tw`absolute top-24 -left-4 z-40`]}
             >
               <FaReact size="24" color="cyan" />
             </animated.div>
 
             <animated.div
-              style={myCard}
-              css={[styles.card, tw`absolute bottom-0 -left-5`]}
+              style={cssSpring}
+              css={[styles.card, tw`absolute -bottom-4 -left-6 z-40`]}
             >
-              <FaReact size="24" color="cyan" />
+              <SiCss3 size="24" color="blue" />
             </animated.div>
 
+            <animated.div
+              style={tailwindSpring}
+              css={[styles.card, tw`absolute -bottom-8 left-20 z-40`]}
+            >
+              <SiTailwindcss size="24" color="cyan" />
+            </animated.div>
+
+          
+            <animated.div
+              style={nextSpring}
+              css={[styles.card, tw`absolute bottom-2 right-0 z-40`]}
+            >
+              <SiNextdotjs size="24" color="black" />
+            </animated.div>
             <div
               tw="flex flex-col items-center justify-center py-5"
             >
