@@ -3,9 +3,9 @@ import { useRouter } from 'next/router';
 
 import ClientOnly from '../../utils/clientonly'
 
-import { Affix, Switch, Button, ActionIcon } from '@mantine/core';
+import { Affix, Switch, Button, ActionIcon, Transition } from '@mantine/core';
 
-import { useSpring, animated } from '@react-spring/web'
+import { useSpring, animated, config } from '@react-spring/web'
 
 import { useToggle } from '@mantine/hooks';
 
@@ -21,15 +21,25 @@ const NavBar = () => {
   const linkStyle = 'inline-block py-4 px-4 mr-1 text-sm font-medium text-center rounded-t-lg hover:border-b-4 '
 
   const [burger, toggle] = useToggle(false, [false, true]);
-  const props = useSpring(
+  const { s, r, o, y } = useSpring(
     {
-      to: { opacity: 1 },
-      from: { opacity: 0 },
-      delay: 5000
+      s: burger ? 1 : 0,
+      r: burger ? 360 : 0,
+      o: burger ? 1 : 0,
+      y: burger ? 0 : -250,
+      from: { s: 0, r: 0, o: 0, y: -250 },
+      config: config.slow,
+      duration: 300
     })
 
+  const { navS } = useSpring({
+
+  })
+
   return (<>
-    <div id="navbar" tw="z-50 w-full text-gray-700 sticky top-0 bg-transparent backdrop-blur-sm">
+    <div id="navbar" tw="z-50 w-full text-gray-700 fixed top-0 bg-transparent backdrop-blur-sm shadow-inner"
+    css={[!burger ? tw`h-12` :""]}
+    >
       <div tw="flex flex-col px-4 md:items-center md:justify-between md:flex-row md:px-6 lg:px-8">
         <div tw="flex flex-row items-center justify-between">
           <div tw=" md:flex">
@@ -55,16 +65,34 @@ const NavBar = () => {
 
           </div>
           <button tw="p-3 rounded-lg md:hidden cursor-pointer" onClick={() => toggle()}>
-            <svg fill="currentColor" viewBox="0 0 20 20" tw="w-6 h-6">
+            <animated.svg style={
+              {
+                scale: s.to({
+                  range: [0, 0.25, 0.35, 0.45, 0.55, 0.65, 0.75, 1],
+                  output: [1, 2.7, 2, 2.7, 2, 1.9, 1.5, 1],
+                }),
+                rotateZ: r,
+                opacity: o.to({
+                  range: [0, 0.25, 0.35, 0.45, 0.55, 0.65, 0.75, 1],
+                  output: [1, 0.75, 0.65, 0.25, 0.45, 0.65, 0.75, 1],
+                })
+              }
+            } fill="currentColor" viewBox="0 0 20 20" tw="w-6 h-6">
               {!burger && <path fillRule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM9 15a1 1 0 011-1h6a1 1 0 110 2h-6a1 1 0 01-1-1z" clipRule="evenodd"></path>}
               {burger && <path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd"></path>}
-            </svg>
+            </animated.svg>
           </button>
         </div>
-        <nav css={[!burger && tw`hidden`, burger && tw`flex`]} tw="w-full flex-col flex-grow pb-4 md:pb-0 md:flex md:items-center md:space-x-2 md:justify-end md:flex-row">
+        <animated.nav
+          tw="w-full flex flex-col flex-grow pb-4 md:(pb-0 flex items-center space-x-2 justify-end flex-row)"
+          
+          style={{
+            y,
+            opacity:o,
+          }}>
           {/*  <Button color="primary" variant="solid" size="lg">xdede</Button> */}
           {[["Home", "/"], ["About", "about"], ["Porfolio", "portfolio"]].map((item: any, index: number) => (
-            <Link href={item[1]}>
+            <Link href={item[1]} key={index}>
               <a
                 css={[
                   tw`px-4 py-2 mt-2 text-sm font-semibold bg-transparent rounded-lg cursor-pointer`,
@@ -77,9 +105,8 @@ const NavBar = () => {
 
           <ClientOnly>
             {<Switch tw="mt-2" color="primary" checked={true} />}
-            <animated.div style={props}>I will fade in</animated.div>
           </ClientOnly>
-        </nav>
+        </animated.nav>
 
       </div>
     </div>

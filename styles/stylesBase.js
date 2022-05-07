@@ -8,7 +8,7 @@ const stylesBase = css`
     --text-strong-color: rgba(74,74,74, 1);
     --subtle-color: rgba(251,248,253, 1);
     --border-color: rgba(237,227,245, 1);
-    --shadow-color: rgba(204,183,219, 0.4);
+    --shadow-color: rgba(204,183,219, 0.8);
     --input-color: rgba(255,255,255, 1);
     --outline-color: rgba(209,181,228, 1);
     --mark-color: rgba(178,85,222, 0.08);
@@ -39,7 +39,7 @@ const stylesBase = css`
     --text-strong-color: rgba(187,187,187, 1);
     --subtle-color: rgba(38,35,41, 1);
     --border-color: rgba(53,45,59, 1);
-    --shadow-color: rgba(0,0,0, 0.3);
+    --shadow-color: rgba(0,0,0, 0.8);
     --input-color: rgba(28,28,28, 1);
     --outline-color: rgba(187,141,214, 1);
     --mark-color: rgba(173,116,205, 0.08);

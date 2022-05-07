@@ -10,7 +10,7 @@ const DefaultLayout = ({ children }: { children: any }) => {
         tw="w-full flex flex-col max-w-7xl mx-auto"
       >
         <Navbar />
-        <main tw="w-full ">
+        <main tw="w-full mt-4">
           {children}
         </main>
         <Footer />
