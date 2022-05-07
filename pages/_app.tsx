@@ -34,7 +34,7 @@ export default function App({ Component, pageProps }: AppPropsWithLayout) {
       >
          <Global styles={stylesBase} />
         <ThemeProvider>
-          <div tw="w-full flex flex-col max-w-7xl mx-auto  items-center ">
+          <div tw="w-full flex flex-col max-w-7xl mx-auto items-center ">
             <Component {...pageProps} />
           </div>
         </ThemeProvider>

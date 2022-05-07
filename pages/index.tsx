@@ -4,6 +4,7 @@ import { Button, Logo } from '../components'
 import ThemeToggle from '../components/ThemeToggle'
 import DefaultLayout from '../layouts/default'
 import Image from 'next/image'
+import Link from 'next/link'
 
 import { useSpring, animated, config, easings } from '@react-spring/web'
 
@@ -28,7 +29,7 @@ const styles = {
     hasBackground && tw`bg-gradient-to-b from-electric to-ribbon`,
   ],
 
-  card: tw` w-10 h-10 flex justify-center items-center bg-base-100 box-shadow[ 0rem 0.5rem calc(4 * 0.5rem) var(--shadow-color)] rounded-lg`
+  card: tw` w-11 h-11 flex justify-center items-center bg-base-100 box-shadow[ 0rem 0.5rem calc(4 * 0.5rem) var(--shadow-color)] rounded-lg`
 
 }
 
@@ -74,12 +75,12 @@ const setIntervalX = (setNextPos: Dispatch<SetStateAction<{
 }
 const App = () => {
 
-  const [htmlPos, setHtmlPos] = useState(rand(-50,50))
-  const [cssPos, setCSSPos] = useState(rand(-50,50))
-  const [tailwindPos, setTailwindPos] = useState(rand(-50,50))
-  const [javaScriptPos, setJavasriptPos] = useState(rand(-50,50))
-  const [reactPos, setReactPos] = useState(rand(-50,50))
-  const [nextPos, setNextPos] = useState(rand(-50,50))
+  const [htmlPos, setHtmlPos] = useState(rand(-100, 100))
+  const [cssPos, setCSSPos] = useState(rand(-100, 100))
+  const [tailwindPos, setTailwindPos] = useState(rand(-100, 100))
+  const [javaScriptPos, setJavasriptPos] = useState(rand(-100, 100))
+  const [reactPos, setReactPos] = useState(rand(-100, 100))
+  const [nextPos, setNextPos] = useState(rand(-100, 100))
 
   const reactSpring = setSpring({ xPos: reactPos.x, yPos: reactPos.y })
   const html5Spring = setSpring({ yPos: htmlPos.y, xPos: htmlPos.x })
@@ -100,7 +101,7 @@ const App = () => {
   return <>
     <Affix position={{ bottom: 20, right: 10 }}>
       <ActionIcon variant="filled" size="lg" tw="bg-special-bg">
-        <BiMoon size="24" />
+        <BiMoon size="34" />
       </ActionIcon>
     </Affix>
     <div tw="w-full grid grid-cols-1 lg:grid-cols-2">
@@ -136,28 +137,28 @@ const App = () => {
               style={html5Spring}
               css={[styles.card, tw`absolute top-0 -left-8 z-40`]}
             >
-              <FaHtml5 size="24" color="orange" tw="" />
+              <FaHtml5 size="34" color="orange" tw="" />
             </animated.div>
 
             <animated.div
               style={reactSpring}
               css={[styles.card, tw`absolute top-24 -left-4 z-40`]}
             >
-              <FaReact size="24" color="cyan" />
+              <FaReact size="34" color="cyan" />
             </animated.div>
 
             <animated.div
               style={cssSpring}
               css={[styles.card, tw`absolute -bottom-4 -left-6 z-40`]}
             >
-              <SiCss3 size="24" color="blue" />
+              <SiCss3 size="34" color="blue" />
             </animated.div>
 
             <animated.div
               style={tailwindSpring}
               css={[styles.card, tw`absolute -bottom-8 left-20 z-40`]}
             >
-              <SiTailwindcss size="24" color="cyan" />
+              <SiTailwindcss size="34" color="cyan" />
             </animated.div>
 
 
@@ -165,7 +166,7 @@ const App = () => {
               style={nextSpring}
               css={[styles.card, tw`absolute bottom-2 right-0 z-40`]}
             >
-              <SiNextdotjs size="24" color="black" />
+              <SiNextdotjs size="34" color="black" />
             </animated.div>
 
 
@@ -174,7 +175,7 @@ const App = () => {
               css={[styles.card, tw`absolute top-2 right-2 z-40`]}
             >
               <div tw="bg-black p-0">
-                <SiJavascript size="24" color="yellow" />
+                <SiJavascript size="34" color="yellow" />
               </div>
             </animated.div>
 
@@ -186,7 +187,6 @@ const App = () => {
                 height="108"
                 width="108"
                 alt="starcode picture"
-
                 tw="rounded-full h-16 w-16"
               />
               <h2 tw="text-xs text-special font-medium mt-2">Bakare Abiola</h2>
@@ -196,10 +196,33 @@ const App = () => {
         </AnimationOnScroll>
       </div>
 
+     
+      <div tw="px-4 lg:col-span-2 mt-16">
+      <h2
+        tw="text-sm text-text-color py-1 font-bold border-b-2 border-b-special lg:(text-left text-lg)">
+        Projects
+      </h2>
+        <AnimationOnScroll tw="py-4 lg:p-8" animateIn="animate__bounceInUp">
 
+        <div tw="grid grid-cols-1 gap-2 md:grid-cols-2">
+        {[["Home", "/"], ["About", "about"], ["Porfolio", "portfolio"]].map((item: any, index: number) => (
+              <Link href={item[1]} key={index}>
+                <a
+                  css={[
+                    tw`px-4 py-2 mt-2 text-sm font-semibold bg-transparent rounded-lg cursor-pointer lg:(mt-0)`,
+                    
+                  ]}
+                >{item[0]}</a>
+              </Link>
+            ))}
+              <div tw="bg-black">1</div>
+              <div tw="bg-black">1</div>
+              <div tw="bg-black">1</div>
+              <div tw="bg-black">1</div>
+              <div tw="bg-black">1</div>
+        </div>
 
-      <div className="lg:col-span-2 flex flex-col  py-6">
-
+        </AnimationOnScroll>
       </div>
     </div>
     <div tw="w-full flex flex-col justify-center gap-y-5 mt-5">

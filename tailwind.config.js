@@ -22,6 +22,9 @@ module.exports = {
         tertiary: "var(--color-primary)",
         special:"var(--special-color)",
         "text-color":"var(--text-color)"
+      },
+      borderColor:{
+        special:"var(--special-color)",
       }
     },
   },
