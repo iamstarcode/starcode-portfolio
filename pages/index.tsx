@@ -21,6 +21,7 @@ import { BiMoon } from 'react-icons/bi';
 import { BiMap } from 'react-icons/bi'
 import { FaHtml5, FaReact } from 'react-icons/fa'
 import { SiCss3, SiJavascript, SiNextdotjs, SiTailwindcss } from 'react-icons/si'
+import { IProject } from '../types'
 
 const styles = {
   // Move long class sets out of jsx to keep it scannable
@@ -37,24 +38,6 @@ const rand = (min: number, max: number) => {
   return { x: Math.floor(min + Math.random() * (max - min)), y: Math.floor(min + Math.random() * (max - min)) }
 }
 
-const useMySpring = ({ min, max }: { min: number, max: number }) => {
-
-  const [reactPos, setReactPos] = useState({ x: -5, y: 0 })
-  //const [spring, setSptong] = useSpring
-  useEffect(() => {
-    setInterval(() => {
-      const { x, y } = rand(-min, max)
-      setReactPos({ x, y })
-    }, 5000)
-
-  }, [])
-
-  return useSpring({
-    from: { y: 0, x: 0 },
-    to: { y: reactPos.y, x: reactPos.x },
-    config: config.molasses
-  })
-}
 
 const setSpring = ({ xPos, yPos }: { xPos: number, yPos: number }) => {
   return useSpring({
@@ -98,10 +81,22 @@ const App = () => {
     setIntervalX(setJavasriptPos)
   }, [])
 
+  const projects: IProject[] = [
+    {
+      title: "Portfolio",
+      link: '/project/portfolio',
+      color: tw`color[green]`,
+      subtitle: "My portfolio website",
+      stack: ["React", "Next"],
+      image: "/img/projects/test.png"
+    }
+  ]
+
   return <>
     <Affix position={{ bottom: 20, right: 10 }}>
       <ActionIcon variant="filled" size="lg" tw="bg-special-bg">
         <BiMoon size="34" />
+
       </ActionIcon>
     </Affix>
     <div tw="w-full grid grid-cols-1 lg:grid-cols-2">
@@ -196,40 +191,51 @@ const App = () => {
         </AnimationOnScroll>
       </div>
 
-     
+
       <div tw="px-4 lg:col-span-2 mt-16">
-      <h2
-        tw="text-sm text-text-color py-1 font-bold border-b-2 border-b-special lg:(text-left text-lg)">
-        Projects
-      </h2>
+        <h2
+          tw="text-sm text-text-color py-1 font-bold border-b-2 border-b-special lg:(text-left text-lg)">
+          Projects
+        </h2>
         <AnimationOnScroll tw="py-4 lg:p-8" animateIn="animate__bounceInUp">
 
-        <div tw="grid grid-cols-1 gap-2 md:grid-cols-2">
-        {[["Home", "/"], ["About", "about"], ["Porfolio", "portfolio"]].map((item: any, index: number) => (
-              <Link href={item[1]} key={index}>
-                <a
-                  css={[
-                    tw`px-4 py-2 mt-2 text-sm font-semibold bg-transparent rounded-lg cursor-pointer lg:(mt-0)`,
-                    
-                  ]}
-                >{item[0]}</a>
+          <div tw="grid grid-cols-1 gap-2 md:grid-cols-2">
+            <ThemeToggle />
+            {projects.map(({ title, link, color, subtitle, image }: IProject, index: number) => (
+              <Link href={link} key={index}>
+                <div tw="bg-cover bg-center relative h-64 w-full p-4 box-shadow[ 0rem 0.5rem calc(4 * 0.5rem) var(--shadow-color)] rounded-lg"
+                style={
+                  {
+                    backgroundImage:`url(${image})`
+                  }
+                }
+                >
+               {/*  <div tw="z-10 absolute top-0">
+                    <Image
+                      src={image}
+                      height="230"
+                      width="430"
+                      alt="starcode picture"
+                    />
+                  </div> */}
+                  <div tw="z-20 relative">
+                    <h2 css={[color]}
+                      tw="text-sm font-medium lg:(text-lg)">
+                      {title}
+                    </h2 >
+
+                    <h1 tw="text-text-color text-lg font-medium lg:(text-xl)">
+                      {subtitle}
+                    </h1>
+                  </div>
+
+                  
+                </div>
               </Link>
             ))}
-              <div tw="bg-black">1</div>
-              <div tw="bg-black">1</div>
-              <div tw="bg-black">1</div>
-              <div tw="bg-black">1</div>
-              <div tw="bg-black">1</div>
-        </div>
-
+          </div>
         </AnimationOnScroll>
       </div>
-    </div>
-    <div tw="w-full flex flex-col justify-center gap-y-5 mt-5">
-      <Button variant="primary">Submit</Button>
-      <Button variant="secondary">Cancel</Button>
-      <Button tw="bg-primary" isSmall>Close</Button>
-      <ThemeToggle />
     </div>
   </>
 }

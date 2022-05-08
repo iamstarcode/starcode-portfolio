@@ -11,7 +11,7 @@ const DefaultLayout = ({ children }: { children: any }) => {
         <main tw="w-full mt-6">
           {children}
         </main>
-        <Footer />
+       {/*  <Footer /> */}
 
       <style jsx global>
         {`
