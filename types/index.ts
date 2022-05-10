@@ -7,5 +7,5 @@ export interface IProject{
     subtitle:string,
     keywords?:string[],
     stack?:string[],
-    image:string
+    cover:string
 }

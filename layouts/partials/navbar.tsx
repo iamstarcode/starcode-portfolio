@@ -21,9 +21,6 @@ const NavBar = () => {
   const clickOutsideRef = useClickOutside(() => toggle(false))
   const useViewport = useViewportSize()
 
-
-
-
   const { s, r, o, y } = useSpring(
     {
       s: burger ? 1 : 0,
@@ -39,7 +36,6 @@ const NavBar = () => {
       config: config.slow,
       duration: 300
     })
-
 
   return (<>
     <div ref={clickOutsideRef} id="navbar" tw="z-50 w-full text-gray-700 fixed md:fixed flex-none top-0 bg-transparent backdrop-blur-sm shadow-sm"

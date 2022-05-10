@@ -1,7 +1,10 @@
-import {useContext} from "react"
+import { ActionIcon, Affix, Badge, Menu, MenuItem } from "@mantine/core"
+import { useContext } from "react"
+import { RiPaintBrushLine } from 'react-icons/ri'
 import "twin.macro"
 
 import { ThemeContext } from "../components/ThemeContext"
+import ClientOnly from "../utils/clientonly"
 
 const ThemeToggle = () => {
   const { theme, setTheme } = useContext(ThemeContext)
@@ -10,19 +13,41 @@ const ThemeToggle = () => {
     return theme === "dark"
   }
 
-  return (
-    <div tw="flex flex-col items-center space-y-10 bg-secondary p-10 rounded-lg">
-      <h1 tw="text-lg font-bold text-tertiary uppercase">
-        {isDark() ? "Dark" : "Light"} Mode
-      </h1>
-      <button
-        tw="w-6 h-6 focus:outline-none fill-current text-primary hover:text-secondary"
-        onClick={() => setTheme(isDark() ? "light" : "dark")}
+  return <>
+    <Affix position={{ bottom: 5, right: 20 }}>
+      <Menu
+        position="top"
+        size="xs"
+        transition="slide-up"
+        transitionTimingFunction="ease"
+        control={
+          <ActionIcon variant="outline" size="lg" tw="bg-gradient-to-tl from-indigo-500 via-purple-500 to-pink-500">
+          <RiPaintBrushLine color="white" size="64" />
+        </ActionIcon> 
+        }
       >
-        {isDark() ? <Moon /> : <Sun />}
-      </button>
-    </div>
-  )
+        <Menu.Label>Themes</Menu.Label>
+        <MenuItem onClick={() => setTheme('light')}>Light</MenuItem>
+        <MenuItem onClick={() => setTheme('dark')}>Dark</MenuItem>
+      </Menu>
+    </Affix>
+    {/*  <div tw="flex flex-col items-center space-y-10 bg-secondary p-10 rounded-lg">
+      <h1 tw="text-lg font-bold text-tertiary uppercase">
+        <ClientOnly>
+          {isDark() ? "Dark" : "Light"} Mode
+        </ClientOnly>
+      </h1>
+      <ClientOnly>
+        <button
+          tw="w-6 h-6 focus:outline-none fill-current text-primary hover:text-secondary"
+          onClick={() => setTheme(isDark() ? "light" : "dark")}
+        >
+          {isDark() ? <Moon /> : <Sun />}
+        </button>
+      </ClientOnly>
+
+    </div> */}
+  </>
 }
 
 const Sun = () => (

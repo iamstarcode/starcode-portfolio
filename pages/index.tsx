@@ -1,7 +1,6 @@
 import { Children, Dispatch, ReactElement, SetStateAction, useEffect, useState } from 'react'
 import tw from 'twin.macro'
 import { Button, Logo } from '../components'
-import ThemeToggle from '../components/ThemeToggle'
 import DefaultLayout from '../layouts/default'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -12,7 +11,7 @@ import { useSpring, animated, config, easings } from '@react-spring/web'
 import { AnimationOnScroll } from 'react-animation-on-scroll';
 import "animate.css/animate.min.css";
 
-import { Affix, Switch, ActionIcon } from '@mantine/core';
+import { Affix, Switch, ActionIcon, Badge } from '@mantine/core';
 
 import { BiMoon } from 'react-icons/bi';
 
@@ -85,32 +84,50 @@ const App = () => {
     {
       title: "Portfolio",
       link: '/project/portfolio',
-      color: tw`color[green]`,
+      color: tw`text-special`,
       subtitle: "My portfolio website",
       stack: ["React", "Next"],
-      image: "/img/projects/test.png"
-    }
+      cover: "/img/projects/test.png"
+    },
+
+    {
+      title: "Portfolio",
+      link: '/project/portfolio',
+      color: tw`text-special`,
+      subtitle: "My portfolio website",
+      stack: ["React", "Next"],
+      cover: "/img/projects/test.png"
+    }, {
+      title: "Portfolio",
+      link: '/project/portfolio',
+      color: tw`text-special`,
+      subtitle: "My portfolio website",
+      stack: ["React", "Next"],
+      cover: "/img/projects/test.png"
+    }, {
+      title: "Portfolio",
+      link: '/project/portfolio',
+      color: tw`text-special`,
+      subtitle: "My portfolio website",
+      stack: ["React", "Next"],
+      cover: "/img/projects/test.png"
+    },
   ]
 
   return <>
-    <Affix position={{ bottom: 20, right: 10 }}>
-      <ActionIcon variant="filled" size="lg" tw="bg-special-bg">
-        <BiMoon size="34" />
 
-      </ActionIcon>
-    </Affix>
     <div tw="w-full grid grid-cols-1 lg:grid-cols-2">
       <AnimationOnScroll tw="p-4 lg:p-8" animateIn="animate__bounceInLeft">
         <h2
           data-aos="fade-right"
           data-aos-offset="300"
           data-aos-easing="ease-in-sine"
-          tw=" text-sm text-center text-text-color lg:(text-left text-lg) font-bold mt-5">
+          tw=" text-sm text-text-color lg:( text-lg) font-bold mt-5">
           Hi!, I'm Bakare Abiola alias!
         </h2>
-        <h2 tw="text-6xl mt-2 text-center text-special lg:(text-left)">Starcode</h2>
+        <h2 tw="text-6xl mt-2 text-special">Starcode</h2>
 
-        <h2 tw=" text-sm text-center text-text-color lg:(text-left text-lg) font-bold mt-5">
+        <h2 tw=" text-sm text-text-color lg:( text-lg) font-bold mt-5">
           catchy right? Lol
         </h2>
 
@@ -192,49 +209,94 @@ const App = () => {
       </div>
 
 
-      <div tw="px-4 lg:col-span-2 mt-16">
+      <div tw="px-4 lg:col-span-2 mt-16 mb-10  ">
         <h2
           tw="text-sm text-text-color py-1 font-bold border-b-2 border-b-special lg:(text-left text-lg)">
           Projects
         </h2>
-        <AnimationOnScroll tw="py-4 lg:p-8" animateIn="animate__bounceInUp">
+        <div tw="py-4 lg:p-8 mx-auto md:max-w-5xl">
+          <div tw="grid grid-cols-1 gap-3 md:(grid-cols-2 gap-5)">
+            {projects.map(({ title, link, color, subtitle, cover }: IProject, index: number) => (
+              <AnimationOnScroll animateIn="animate__bounceInUp">
+                <Link href={link} key={index}>
+                  <div
+                    tw="overflow-hidden w-full box-shadow[ 0rem 0.5rem calc(4 * 0.5rem) var(--shadow-color)] rounded-lg transition-transform duration-500 hover:scale-105 cursor-pointer">
+                    <div tw="w-full">
+                      <Image
+                        src={cover}
+                        height="200"
+                        width="300"
+                        layout="responsive"
+                        alt="starcode picture"
+                      />
+                    </div>
+                    <div tw="px-2 py-1 bg-base-100">
+                      <h2 css={[color]}
+                        tw="text-sm font-medium lg:(text-lg)">
+                        {title}
+                      </h2 >
 
-          <div tw="grid grid-cols-1 gap-2 md:grid-cols-2">
-            <ThemeToggle />
-            {projects.map(({ title, link, color, subtitle, image }: IProject, index: number) => (
-              <Link href={link} key={index}>
-                <div tw="bg-cover bg-center relative h-64 w-full p-4 box-shadow[ 0rem 0.5rem calc(4 * 0.5rem) var(--shadow-color)] rounded-lg"
-                style={
-                  {
-                    backgroundImage:`url(${image})`
-                  }
-                }
-                >
-               {/*  <div tw="z-10 absolute top-0">
-                    <Image
-                      src={image}
-                      height="230"
-                      width="430"
-                      alt="starcode picture"
-                    />
-                  </div> */}
-                  <div tw="z-20 relative">
-                    <h2 css={[color]}
-                      tw="text-sm font-medium lg:(text-lg)">
-                      {title}
-                    </h2 >
-
-                    <h1 tw="text-text-color text-lg font-medium lg:(text-xl)">
-                      {subtitle}
-                    </h1>
+                      <h1 tw="text-text-color text-lg font-medium lg:(text-xl)">
+                        {subtitle}
+                      </h1>
+                    </div>
                   </div>
+                </Link>
+              </AnimationOnScroll>
 
-                  
-                </div>
-              </Link>
             ))}
           </div>
-        </AnimationOnScroll>
+        </div>
+        <div tw="flex justify-start mt-5 md:(justify-end)">
+          <Link passHref href="/projects">
+            <Badge
+              size="xl"
+              tw="p-2 bg-special-bg text-text-color normal-case cursor-pointer">
+              See More
+            </Badge>
+          </Link>
+
+        </div>
+      </div>
+
+      <div tw="px-4 lg:col-span-2 mt-16 mb-10  ">
+        <h2
+          tw="text-sm text-text-color py-1 font-bold border-b-2 border-b-special lg:(text-left text-lg)">
+          Blog Post
+        </h2>
+        <div tw="py-4 lg:p-8 mx-auto md:max-w-5xl">
+          <div tw="grid grid-cols-1 gap-3 md:(grid-cols-2 gap-5)">
+            {projects.map(({ title, link, color, subtitle, cover }: IProject, index: number) => (
+              <AnimationOnScroll animateIn="animate__bounceInUp">
+                <Link href={link} key={index}>
+                  <div
+                    tw="overflow-hidden w-full box-shadow[ 0rem 0.5rem calc(4 * 0.5rem) var(--shadow-color)] rounded-lg">
+                    <div tw="w-full">
+                      <Image
+                        src={cover}
+                        height="200"
+                        width="300"
+                        layout="responsive"
+                        alt="starcode picture"
+                      />
+                    </div>
+                    <div tw="px-2 py-1 bg-base-100">
+                      <h2 css={[color]}
+                        tw="text-sm font-medium lg:(text-lg)">
+                        {title}
+                      </h2 >
+
+                      <h1 tw="text-text-color text-lg font-medium lg:(text-xl)">
+                        {subtitle}
+                      </h1>
+                    </div>
+                  </div>
+                </Link>
+              </AnimationOnScroll>
+
+            ))}
+          </div>
+        </div>
       </div>
     </div>
   </>

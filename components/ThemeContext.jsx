@@ -12,7 +12,6 @@ const getInitialTheme = () => {
       return "dark"
     }
   }
-
   return "dark"
 }
 
@@ -23,9 +22,9 @@ const ThemeProvider = ({ initialTheme = null, children }) => {
 
   const rawSetTheme = theme => {
     const root = window.document.documentElement
-    const isDark = theme === "dark"
-
-    root.classList.remove(isDark ? "light" : "dark")
+    //const isDark = theme === "dark"
+    //root.classList.remove(isDark ? "light" : "dark")
+    root.className=""//remove theme
     root.classList.add(theme)
 
     localStorage.setItem("color-theme", theme)
