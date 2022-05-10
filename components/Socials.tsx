@@ -122,7 +122,7 @@ const Social = () => {
     <Modal
       opened={open}
       onClose={() => console.log('closed')}
-      hideCloseButton={true}
+      withCloseButton={true}
       centered
       overlayColor="var(--shadow-color)"
       overlayOpacity={0.55}
