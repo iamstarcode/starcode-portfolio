@@ -93,14 +93,19 @@ const NavBar = () => {
             }}
 
           >
-            {[["Home", "/"], ["About", "about"], ["Porfolio", "portfolio"]].map((item: any, index: number) => (
+            {[
+              ["Home", "/"],
+              ["Projects", "/projects"],
+              ["About", "/about"],
+              ["Porfolio", "/portfolio"]
+            ].map((item: any, index: number) => (
               <Link href={item[1]} key={index}>
                 <a
                   css={[
                     tw`px-4 py-2 mt-2 text-sm font-semibold bg-transparent rounded-lg cursor-pointer lg:(mt-0)`,
-                    router.pathname == item[1] ? tw`bg-special-bg text-white` : tw`transform transition-transform hover:scale-105 text-special hover:bg-base-100`,
-                    router.pathname == "/" ? "active" : ""
+                    router.pathname === item[1] ? tw`bg-special-bg text-white` : tw`transform transition-transform hover:scale-105 text-special hover:bg-base-100`,
                   ]}
+                  onClick={() => toggle()}
                 >{item[0]}</a>
               </Link>
             ))}

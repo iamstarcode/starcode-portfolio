@@ -9,6 +9,7 @@ import { useClickOutside } from "@mantine/hooks"
 import { SiGmail, SiInstagram, SiTwitter, SiWhatsapp } from "react-icons/si"
 import { IoPhonePortraitOutline } from "react-icons/io5"
 import { TiSocialAtCircular } from 'react-icons/ti'
+import { MdOutlineTouchApp } from "react-icons/md"
 import { BsGithub } from "react-icons/bs"
 
 
@@ -34,65 +35,90 @@ const Social = () => {
 
   const data = [1, 3, 4, 5]
   const socials = [
-    <button
-      id="phone"
-      tw="bg-white w-12 h-12 text-2xl text-gray-600 border-2  border-gray-500 rounded-full duration-500 transform hover:(-translate-y-2 bg-gray-600 hover:text-white)"
-    >
-      <a href="https://github.com/iamstarcode" target="_blank">
-        {' '}
-        <BsGithub tw="w-full" />
-      </a>
-    </button>,
-    <button
-      id="phone"
-      tw="bg-white w-12 h-12 text-2xl text-blue-600 border-2  border-blue-500 rounded-full duration-500 transform hover:(-translate-y-2 bg-blue-600 hover:text-white)"
-    >
-      <a href="tel:+2348184991004" target="_blank">
-        {' '}
-        <IoPhonePortraitOutline tw="w-full" />
-      </a>
-    </button>,
-    <button
-      id="gmail"
-      tw="bg-white w-12 h-12 text-2xl text-red-600 border-2  border-red-500 rounded-full duration-500 transform hover:(-translate-y-2 bg-red-600 hover:text-white)"
-    >
-      <a href="mailto:iamstarcode@gmail.com" target="_blank">
-        {' '}
-        <SiGmail tw="w-full" />
-      </a>
-    </button>,
-    <button
-      id="facebook"
-      tw="bg-white w-12 h-12 text-2xl text-blue-600 border-2  border-blue-600 rounded-full duration-500 transform hover:(-translate-y-2 bg-blue-600 hover:text-white)"
-    >
-      <a href="https://twitter.com/i_am_starcode" target="_blank">
-        {' '}
-        <SiTwitter tw="w-full" />
-      </a>
-    </button>,
-    <button
-      id="instagram"
-      tw=" bg-white w-12 h-12 text-2xl text-pink-600 border-2 border-pink-500  rounded-full transform duration-500  hover:(bg-gradient-to-b border-0 from-indigo-600 via-pink-600 text-white to-yellow-500 -translate-y-2)"
-    >
-      <a href="https://www.instagram.com/i_am_starcode" target="_blank">
-        {' '}
-        <SiInstagram tw="w-full" />
-      </a>
-    </button>,
-    <button
-      id="whatsapp"
-      tw="bg-white w-12 h-12 text-2xl text-green-500 border-2 border-green-600  rounded-full  transform duration-500  hover:(-translate-y-2 bg-green-600 text-white)"
-    >
-      <a href="https://wa.me/+2348184991004" target="_blank">
-        {' '}
-        <SiWhatsapp tw="w-full" />
-      </a>
-    </button>
+    {
+      key: 0,
+      jsx: <button
+        id="github"
+        tw="bg-white w-12 h-12 text-2xl text-gray-600 border-2  border-gray-500 rounded-full duration-500 transform hover:(-translate-y-2 bg-gray-600 hover:text-white)"
+      >
+        <a href="https://github.com/iamstarcode" target="_blank">
+          {' '}
+          <BsGithub tw="w-full" />
+        </a>
+      </button>,
+    },
+
+    {
+      key: 1,
+      jsx: <button
+        id="phone"
+        tw="bg-white w-12 h-12 text-2xl text-blue-600 border-2  border-blue-500 rounded-full duration-500 transform hover:(-translate-y-2 bg-blue-600 hover:text-white)"
+      >
+        <a href="tel:+2348184991004" target="_blank">
+          {' '}
+          <IoPhonePortraitOutline tw="w-full" />
+        </a>
+      </button>,
+    },
+
+    {
+      key: 2,
+      jsx: <button
+        id="gmail"
+        tw="bg-white w-12 h-12 text-2xl text-red-600 border-2  border-red-500 rounded-full duration-500 transform hover:(-translate-y-2 bg-red-600 hover:text-white)"
+      >
+        <a href="mailto:iamstarcode@gmail.com" target="_blank">
+          {' '}
+          <SiGmail tw="w-full" />
+        </a>
+      </button>,
+    },
+
+    {
+      key: 3,
+      jsx: <button
+        id="facebook"
+        tw="bg-white w-12 h-12 text-2xl text-blue-600 border-2  border-blue-600 rounded-full duration-500 transform hover:(-translate-y-2 bg-blue-600 hover:text-white)"
+      >
+        <a href="https://twitter.com/i_am_starcode" target="_blank">
+          {' '}
+          <SiTwitter tw="w-full" />
+        </a>
+      </button>,
+    },
+
+    {
+      key: 4,
+      jsx: <button
+        id="instagram"
+        tw=" bg-white w-12 h-12 text-2xl text-pink-600 border-2 border-pink-500  rounded-full transform duration-500  hover:(bg-gradient-to-b border-0 from-indigo-600 via-pink-600 text-white to-yellow-500 -translate-y-2)"
+      >
+        <a href="https://www.instagram.com/i_am_starcode" target="_blank">
+          {' '}
+          <SiInstagram tw="w-full" />
+        </a>
+      </button>,
+    },
+
+    {
+      key: 5,
+      jsx: <button
+        id="whatsapp"
+        tw="bg-white w-12 h-12 text-2xl text-green-500 border-2 border-green-600  rounded-full  transform duration-500  hover:(-translate-y-2 bg-green-600 text-white)"
+      >
+        <a href="https://wa.me/+2348184991004" target="_blank">
+          {' '}
+          <SiWhatsapp tw="w-full" />
+        </a>
+      </button>
+    },
+
   ]
   const transRef = useSpringRef()
   const transition = useTransition(open ? socials : [], {
     ref: transRef,
-    trail: 400 / data.length,
+    //trail: 400 / data.length,
+    keys: socials => socials.key,
     from: { opacity: 0, scale: 0 },
     enter: { opacity: 1, scale: 1 },
     leave: { opacity: 0, scale: 0 },
@@ -102,26 +128,42 @@ const Social = () => {
     0,
     open ? 0.1 : 0.6,
   ])
+
+  const [flip, set2] = useState(false)
+  const { touch } = useSpring({
+    from: { touch: 0 },
+    to: { touch: 1 },
+    reset: true,
+    reverse: flip,
+    delay: 200,
+    config: config.molasses,
+    onRest: () => set2(!flip),
+  })
   return <>
     <Affix position={{ bottom: 24, left: 20 }}
-      ref={clickOutsideRef}
     >
       <animated.div
         style={
           {
             opacity,
-            scale
+            scale,
+            rotateZ: touch.to({
+              range: [0, 0.1, 0.2, 0.3, 0.4, 0.6, 1],
+              output: [-15, 0, -10, 0, 15, 0, 10, 0]
+            }),
           }
         }
+        tw="origin-center"
       >
-        <ActionIcon tw="shadow-2xl bg-special-bg text-text-color transform transition hover:(bg-special-bg  duration-500 -translate-y-1)" onClick={() => set(open => !open)} variant="filled" radius="md" size="xl">
-          <TiSocialAtCircular color="white" size="64" />
+        <ActionIcon tw="shadow-2xl font-light bg-special-bg text-text-color transform transition hover:(bg-special-bg  duration-500 -translate-y-1)" onClick={() => set(open => !open)} variant="filled" radius="md" size="xl">
+          <MdOutlineTouchApp color="white" size="64" />
         </ActionIcon>
       </animated.div>
     </Affix>
     <Modal
       opened={open}
-      onClose={() => console.log('closed')}
+      onClose={() => set(false)}
+      title="Get in touch"
       withCloseButton={true}
       centered
       overlayColor="var(--shadow-color)"
@@ -130,9 +172,9 @@ const Social = () => {
       tw="backdrop-blur-sm"
     >
       <div tw="grid grid-cols-2 gap-3 place-items-center w-full items-center justify-center  lg:justify-start lg:max-w-[25rem] mt-5">
-        {transition((style, item) => (
+        {transition((style, item, index) => (
           <animated.div style={{ ...style }}>
-            {item}
+            {item.jsx}
           </animated.div>
         ))}
       </div>
