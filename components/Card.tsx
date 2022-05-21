@@ -8,17 +8,10 @@ import Image from "next/image"
 
 import { title } from "process"
 import { TwStyle } from "twin.macro"
-import { IProject } from "../types"
+import { ICardProps } from "../types"
 
-interface ICardProps {
-  link: string,
-  cover: string,
-  color: TwStyle,
-  title:string,
-  subtitle: string
-}
 
-const Card = ({ link, cover, color, subtitle, title }: IProject) => {
+const Card = ({ link, cover, color, subtitle, title }: ICardProps) => {
   return <>
     <Link href={link} >
       <div

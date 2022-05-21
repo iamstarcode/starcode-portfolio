@@ -18,21 +18,13 @@ import projects from '../data/projects'
 
 
 import { BiMap } from 'react-icons/bi'
-import { FaHtml5, FaReact } from 'react-icons/fa'
-import { SiCss3, SiJavascript, SiNextdotjs, SiTailwindcss } from 'react-icons/si'
+import { SiReact, SiHtml5 , SiCss3, SiJavascript, SiNextdotjs, SiTailwindcss } from 'react-icons/si'
 import { IProject } from '../types'
 import ClientOnly from '../utils/clientonly'
 import Card from '../components/Card'
 
 const styles = {
-  // Move long class sets out of jsx to keep it scannable
-  container: ({ hasBackground }: { hasBackground: boolean }) => [
-    tw`flex flex-col items-center justify-center h-screen`,
-    hasBackground && tw`bg-gradient-to-b from-electric to-ribbon`,
-  ],
-
   card: tw` w-11 h-11 flex justify-center items-center bg-base-100 box-shadow[ 0rem 0.5rem calc(4 * 0.5rem) var(--shadow-color)] rounded-lg`
-
 }
 
 const rand = (min: number, max: number) => {
@@ -90,6 +82,7 @@ const App = () => {
 
   }, [])
 
+  const v= <p></p>
   return <>
     <div tw="w-full grid grid-cols-1 lg:grid-cols-2">
       <ClientOnly>
@@ -127,14 +120,14 @@ const App = () => {
                 style={html5Spring}
                 css={[styles.card, tw`absolute top-0 -left-8 z-40`]}
               >
-                <FaHtml5 size="34" color="orange" tw="" />
+                <SiHtml5 size="34" color="orange" tw="" />
               </animated.div>
 
               <animated.div
                 style={reactSpring}
                 css={[styles.card, tw`absolute top-24 -left-4 z-40`]}
               >
-                <FaReact size="34" color="cyan" />
+                <SiReact size="34" color="cyan" />
               </animated.div>
 
               <animated.div
@@ -196,10 +189,8 @@ const App = () => {
         <div tw="py-4 lg:p-8 mx-auto md:max-w-5xl">
           <div tw="grid grid-cols-1 gap-3 md:(grid-cols-2 gap-5)">
             {projects && projects.map(({ id, title, link, color, subtitle, cover }: IProject, index: number) => (
-              <ClientOnly key={index}>
-                <AnimationOnScroll animateOnce={true} animateIn="animate__bounceInUp">
+                <AnimationOnScroll key={index} animateOnce={true} animateIn="animate__bounceInUp">
                   <Card
-                    id={id}
                     title={title}
                     link={link}
                     color={color}
@@ -207,7 +198,6 @@ const App = () => {
                     cover={cover}
                   />
                 </AnimationOnScroll>
-              </ClientOnly>
             ))}
           </div>
         </div>
@@ -230,8 +220,7 @@ const App = () => {
         <div tw="py-4 lg:p-8 mx-auto md:max-w-5xl">
           <div tw="grid grid-cols-1 gap-3 md:(grid-cols-2 gap-5)">
             {projects.map(({ title, link, color, subtitle, cover }: IProject, index: number) => (
-              <ClientOnly key={index} >
-                <AnimationOnScroll animateOnce={true} animateIn="animate__bounceInUp">
+                <AnimationOnScroll key={index} animateOnce={true} animateIn="animate__bounceInUp">
                   <Link href={link}>
                     <div
                       tw="overflow-hidden w-full box-shadow[ 0rem 0.5rem calc(4 * 0.5rem) var(--shadow-color)] rounded-lg">
@@ -257,9 +246,6 @@ const App = () => {
                     </div>
                   </Link>
                 </AnimationOnScroll>
-
-              </ClientOnly>
-
             ))}
           </div>
         </div>

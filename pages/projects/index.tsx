@@ -42,7 +42,6 @@ const Projects = () => {
       
           <AnimationOnScroll key={index} animateOnce={true} animateIn="animate__bounceInUp">
             <Card
-              id={id}
               title={title}
               link={link}
               color={color}

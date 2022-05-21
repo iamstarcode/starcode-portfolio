@@ -37,12 +37,15 @@ const NavBar = () => {
       duration: 300
     })
 
+  console.log(router.asPath)
+  console.log(router.asPath.lastIndexOf('/projects'))
+  // router.basePath === item[1]
   return (<>
     <div ref={clickOutsideRef} id="navbar" tw="z-50 w-full text-gray-700 fixed md:fixed flex-none top-0 bg-transparent backdrop-blur-sm shadow-sm"
-      css={[!burger ? tw`h-14` : ""]}
+      
     >
       <div tw="max-w-7xl mx-auto">
-        <div tw="flex flex-col px-4 md:items-center md:justify-between md:flex-row md:px-6 lg:px-8">
+        <div css={[!burger ? tw`h-14` : ""]} tw="flex flex-col px-4 md:items-center md:justify-between md:flex-row md:px-6 lg:px-8">
           <div tw="flex flex-row items-center justify-between">
             <div tw="md:flex">
               <svg width="50" height="50" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -93,7 +96,44 @@ const NavBar = () => {
             }}
 
           >
-            {[
+            <Link href="/">
+              <a
+                css={[
+                  tw`px-4 py-2 mt-2 text-sm font-semibold bg-transparent rounded-lg cursor-pointer lg:(mt-0)`,
+                  router.pathname === "/" ? tw`bg-special-bg text-white` : tw`transform transition-transform hover:scale-105 text-special hover:bg-base-100`,
+                ]}
+                onClick={() => toggle()}
+              >Home</a>
+            </Link>
+            <Link href="/projects">
+              <a
+                css={[
+                  tw`px-4 py-2 mt-2 text-sm font-semibold bg-transparent rounded-lg cursor-pointer lg:(mt-0)`,
+                  router.asPath.lastIndexOf("/projects") > -1 ? tw`bg-special-bg text-white` : tw`transform transition-transform hover:scale-105 text-special hover:bg-base-100`,
+                ]}
+                onClick={() => toggle()}
+              >Projects</a>
+            </Link>
+            <Link href="/blogs">
+              <a
+                css={[
+                  tw`px-4 py-2 mt-2 text-sm font-semibold bg-transparent rounded-lg cursor-pointer lg:(mt-0)`,
+                  router.asPath.lastIndexOf("/blogs") > -1 ? tw`bg-special-bg text-white` : tw`transform transition-transform hover:scale-105 text-special hover:bg-base-100`,
+                ]}
+                onClick={() => toggle()}
+              >Blogs</a>
+            </Link>
+
+            <Link href="/about">
+              <a
+                css={[
+                  tw`px-4 py-2 mt-2 text-sm font-semibold bg-transparent rounded-lg cursor-pointer lg:(mt-0)`,
+                  router.pathname === "/about" ? tw`bg-special-bg text-white` : tw`transform transition-transform hover:scale-105 text-special hover:bg-base-100`,
+                ]}
+                onClick={() => toggle()}
+              >About</a>
+            </Link>
+            {/* {[
               ["Home", "/"],
               ["Projects", "/projects"],
               ["About", "/about"],
@@ -103,12 +143,12 @@ const NavBar = () => {
                 <a
                   css={[
                     tw`px-4 py-2 mt-2 text-sm font-semibold bg-transparent rounded-lg cursor-pointer lg:(mt-0)`,
-                    router.pathname === item[1] ? tw`bg-special-bg text-white` : tw`transform transition-transform hover:scale-105 text-special hover:bg-base-100`,
+                    router.asPath.lastIndexOf(item[1]) > -1 ? tw`bg-special-bg text-white` : tw`transform transition-transform hover:scale-105 text-special hover:bg-base-100`,
                   ]}
                   onClick={() => toggle()}
                 >{item[0]}</a>
               </Link>
-            ))}
+            ))} */}
           </animated.nav>
         </div>
       </div>
