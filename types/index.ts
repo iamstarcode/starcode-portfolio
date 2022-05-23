@@ -1,6 +1,13 @@
-import React, { ReactElement } from "react";
-import { IconType } from "react-icons";
 import { TwStyle } from "twin.macro";
+
+export interface ICardProps {
+    link: string,
+    cover: string,
+    color?: TwStyle,
+    title?:string,
+    subtitle: string,
+    type:"project"|"blog"
+  }
 
 export interface IProject{
     id: string,
@@ -17,10 +24,9 @@ export interface IProject{
     images:string[]
 }
 
-export interface ICardProps {
-    link: string,
-    cover: string,
-    color: TwStyle,
+export interface IBlogProps{
     title:string,
-    subtitle: string
-  }
+    cover:string,
+    link: string,
+}
+

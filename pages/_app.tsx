@@ -14,10 +14,6 @@ import ThemeToggle from '../components/ThemeToggle'
 import stylesBase from '../styles/stylesBase'
 import Social from '../components/Socials'
 
-
-
-
-
 type NextPageWithLayout = NextPage & {
   getLayout?: (page: ReactElement) => ReactNode,
 }

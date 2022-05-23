@@ -196,6 +196,7 @@ const App = () => {
                     color={color}
                     subtitle={subtitle}
                     cover={cover}
+                    type="project"
                   />
                 </AnimationOnScroll>
             ))}
