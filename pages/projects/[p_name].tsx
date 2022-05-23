@@ -96,7 +96,10 @@ const Project = () => {
     {project && <div tw="w-full mb-16">
       <AnimationOnScroll tw="p-4 lg:p-8" animateOnce={true} animateIn="animate__bounceInLeft">
         <div tw="my-8 md:(my-10)" css={[project.color]}>
+          <Link passHref href="/projects">
           <ImArrowLeft2 size="28" />
+
+          </Link>
         </div>
         <section tw=" mt-5 md:(flex flex-row)">
 
@@ -112,11 +115,11 @@ const Project = () => {
             </a>
           </div>
           <div ref={ref} tw="height[13rem] w-full md:(height[25rem] w-[85%])">
-            <div tw="relative w-full h-full overflow-hidden ">
+            <div tw="relative w-full h-full overflow-hidden box-shadow[ 0rem 0.5rem calc(4 * 0.5rem) var(--shadow-color)]">
               {props.map(({ x, display, scale }, i) => (
-                <animated.div tw="absolute w-full h-full overflow-hidden" {...bind()} key={i} style={{ display, x }}>
+                <animated.div tw=" absolute w-full h-full overflow-hidden" {...bind()} key={i} style={{ display, x }}>
                   <animated.div
-                    tw="w-full h-full bg-cover bg-center touch-action[none] box-shadow[ 0rem 0.5rem calc(4 * 0.5rem) var(--shadow-color)]
+                    tw="w-full h-full bg-cover bg-center touch-action[none] 
                   "
                     style={{ scale, backgroundImage: `url(${project.images[i]})` }} />
                 </animated.div>

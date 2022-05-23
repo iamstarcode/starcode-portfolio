@@ -22,8 +22,8 @@ const projects: IProject[] = [
     year:"2022",
     color: tw`text-special`,
     stack: ["React","Next", "TailwindCSS"],
-    cover: '/img/projects/portfolio-cover.png',
-    images:['/img/projects/portfolio-cover.png','/img/projects/test2.png', '/img/projects/test2.png','/img/projects/test2.png']
+    cover: '/img/projects/portfolio-mokup.png',
+    images:['/img/projects/portfolio-mokup.png','/img/projects/portfolio-mokup.png', '/img/projects/portfolio-mokup.png','/img/projects/portfolio-mokup.png']
   },
 ]
 
