@@ -1,6 +1,14 @@
+const defaultTheme = require('tailwindcss/defaultTheme')
+
 module.exports = {
   darkMode:'class',
   theme: {
+    screens:{
+      'xxs' :'320px',
+      'xs':'360px',
+      's': '425px',
+      ...defaultTheme.screens,
+    },
     extend: {
       colors: {
         electric: '#db00ff',
@@ -25,7 +33,7 @@ module.exports = {
       },
       borderColor:{
         special:"var(--special-color)",
-      }
+      },
     },
   },
   plugins: [],

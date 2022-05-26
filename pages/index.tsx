@@ -13,12 +13,14 @@ import "animate.css/animate.min.css";
 
 import { Badge } from '@mantine/core';
 
-
+import { IBlogProps } from '../types'
 import projects from '../data/projects'
+import blogs from '../data/blogs'
+
 
 
 import { BiMap } from 'react-icons/bi'
-import { SiReact, SiHtml5 , SiCss3, SiJavascript, SiNextdotjs, SiTailwindcss } from 'react-icons/si'
+import { SiReact, SiHtml5, SiCss3, SiJavascript, SiNextdotjs, SiTailwindcss } from 'react-icons/si'
 import { IProject } from '../types'
 import ClientOnly from '../utils/clientonly'
 import Card from '../components/Card'
@@ -82,7 +84,7 @@ const App = () => {
 
   }, [])
 
-  const v= <p></p>
+  const v = <p></p>
   return <>
     <div tw="w-full grid grid-cols-1 lg:grid-cols-2">
       <ClientOnly>
@@ -189,16 +191,16 @@ const App = () => {
         <div tw="py-4 lg:p-8 mx-auto md:max-w-5xl">
           <div tw="grid grid-cols-1 gap-3 md:(grid-cols-2 gap-5)">
             {projects && projects.map(({ id, title, link, color, subtitle, cover }: IProject, index: number) => (
-                <AnimationOnScroll key={index} animateOnce={true} animateIn="animate__bounceInUp">
-                  <Card
-                    title={title}
-                    link={link}
-                    color={color}
-                    subtitle={subtitle}
-                    cover={cover}
-                    type="project"
-                  />
-                </AnimationOnScroll>
+              <AnimationOnScroll key={index} animateOnce={true} animateIn="animate__bounceInUp">
+                <Card
+                  title={title}
+                  link={link}
+                  color={color}
+                  subtitle={subtitle}
+                  cover={cover}
+                  type="project"
+                />
+              </AnimationOnScroll>
             ))}
           </div>
         </div>
@@ -220,35 +222,28 @@ const App = () => {
         </h2>
         <div tw="py-4 lg:p-8 mx-auto md:max-w-5xl">
           <div tw="grid grid-cols-1 gap-3 md:(grid-cols-2 gap-5)">
-            {projects.map(({ title, link, color, subtitle, cover }: IProject, index: number) => (
-                <AnimationOnScroll key={index} animateOnce={true} animateIn="animate__bounceInUp">
-                  <Link href={link}>
-                    <div
-                      tw="overflow-hidden w-full box-shadow[ 0rem 0.5rem calc(4 * 0.5rem) var(--shadow-color)] rounded-lg">
-                      <div tw="w-full">
-                        <Image
-                          src={cover}
-                          height="200"
-                          width="300"
-                          layout="responsive"
-                          alt="starcode picture"
-                        />
-                      </div>
-                      <div tw="px-2 py-1 bg-base-100">
-                        <h2 css={[color]}
-                          tw="text-sm font-medium lg:(text-lg)">
-                          {title}
-                        </h2 >
+            {blogs.map(({ title, link, cover }: IBlogProps, index: number) => (
 
-                        <h1 tw="text-text-color text-lg font-medium lg:(text-xl)">
-                          {subtitle}
-                        </h1>
-                      </div>
-                    </div>
-                  </Link>
-                </AnimationOnScroll>
+              <AnimationOnScroll key={index} animateOnce={true} animateIn="animate__bounceInUp">
+                <Card
+                  link={link}
+                  subtitle={title}
+                  cover={cover}
+                  type="blog"
+                />
+              </AnimationOnScroll>
             ))}
           </div>
+        </div>
+
+        <div tw="flex justify-start mt-5 md:(justify-end)">
+          <Link passHref href="/blogs">
+            <Badge
+              size="xl"
+              tw="p-2 bg-special-bg text-text-color normal-case cursor-pointer">
+              See More
+            </Badge>
+          </Link>
         </div>
       </div>
     </div>

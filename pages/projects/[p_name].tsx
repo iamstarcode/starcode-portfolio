@@ -31,42 +31,39 @@ import useMeasure from 'react-use-measure'
 import { useDrag } from '@use-gesture/react'
 import { clamp } from "lodash"
 
-const Project = () => {
+const getIcon = (icon: string) => {
+  let jsx: JSX.Element
+  switch (icon.toLocaleLowerCase()) {
+    case "react":
+      jsx = <SiReact size="34" color="cyan" />
+      break;
+    case "next":
+      jsx = <SiNextdotjs size="34" color="black" />
+      break
+    case "tailwindcss":
+      jsx = <SiTailwindcss size="34" color="cyan" />
+      break;
+    default:
+      jsx = <BsQuestionCircle size="34" color="red" />
+  }
 
+  return jsx
+}
+
+const styles = {
+  card: tw`p-1 flex space-x-2 text-sm justify-center items-center bg-base-100 box-shadow[ 0rem 0.5rem calc(4 * 0.5rem) var(--shadow-color)] rounded-lg`
+}
+const Project = () => {
 
   const router = useRouter()
   const { p_name } = router.query
   const project = projects.find(project => project.id === p_name)
 
-  const styles = {
-    card: tw`p-1 flex space-x-2 text-sm justify-center items-center bg-base-100 box-shadow[ 0rem 0.5rem calc(4 * 0.5rem) var(--shadow-color)] rounded-lg`
-  }
-
-  const getIcon = (icon: string) => {
-    let jsx: JSX.Element
-    switch (icon.toLocaleLowerCase()) {
-      case "react":
-        jsx = <SiReact size="34" color="cyan" />
-        break;
-      case "next":
-        jsx = <SiNextdotjs size="34" color="black" />
-        break
-      case "tailwindcss":
-        jsx = <SiTailwindcss size="34" color="cyan" />
-        break;
-      default:
-        jsx = <BsQuestionCircle size="34" color="red" />
-    }
-
-    return jsx
-  }
-
   const index = useRef(0)
   const [ref, { width }] = useMeasure()
 
   const [props, api] = useSprings(
-    //project?.images.length ? project?.images.length : 0,
-    4,
+    project?.images.length == undefined ? 0 : project.images.length,
     i => ({
       x: i * width,
       scale: width === 0 ? 0 : 1,
@@ -78,7 +75,7 @@ const Project = () => {
   const bind = useDrag(({ active, movement: [mx], direction: [xDir], cancel }) => {
     if (active && Math.abs(mx) > width / 2) {
       //index.current = clamp(index.current + (xDir > 0 ? -1 : 1), 0, project?.images.length ? project?.images.length : 0 - 1)
-      index.current = clamp(index.current + (xDir > 0 ? -1 : 1), 0, 4 - 1)
+      index.current = clamp(index.current + (xDir > 0 ? -1 : 1), 0, project?.images.length == undefined ? 0 : project.images.length - 1)
       cancel()
     }
     api.start(i => {
@@ -90,37 +87,37 @@ const Project = () => {
     })
   })
 
-
   console.log(project)
   return <>
     {project && <div tw="w-full mb-16">
       <AnimationOnScroll tw="p-4 lg:p-8" animateOnce={true} animateIn="animate__bounceInLeft">
         <div tw="my-8 md:(my-10)" css={[project.color]}>
-          <Link passHref href="/projects">
-          <ImArrowLeft2 size="28" />
-
+          <Link href="/projects">
+            <a>
+              <ImArrowLeft2 size="28" />
+            </a>
           </Link>
         </div>
-        <section tw=" mt-5 md:(flex flex-row)">
-
-          <div>
+        <section tw="h-full w-full mt-5 md:(flex flex-row)">
+          <div tw="md:(w-[50%])">
             <h2 tw="font-size[2.65rem] mt-2" css={[project.color]}>{project.title}</h2>
             <h2 tw=" text-lg leading-5 text-text-color lg:( text-xl) my-3">
               {project.about}
             </h2>
-          
-            <a href={project.live_url} tw=" inline-flex space-x-2" css={[project.color]} target="_blank">
+
+            <a href={"https://" + project.live_url} tw=" inline-flex space-x-2" css={[project.color]} target="_blank">
               <BsLink45Deg size="24" />
-              iamstarcode.com
+              {project.live_url}
             </a>
           </div>
-          <div ref={ref} tw="height[13rem] w-full md:(height[25rem] w-[85%])">
+          <div
+            ref={ref}
+            tw="w-full xxs:(height[12rem]) xs:(height[14rem]) s:(height[15.5rem])  sm:(height[20rem]) md:(height[25rem] w-[50%]) lg:(height[19rem]) xl:(height[25rem])">
             <div tw="relative w-full h-full overflow-hidden box-shadow[ 0rem 0.5rem calc(4 * 0.5rem) var(--shadow-color)]">
               {props.map(({ x, display, scale }, i) => (
-                <animated.div tw=" absolute w-full h-full overflow-hidden" {...bind()} key={i} style={{ display, x }}>
+                <animated.div tw=" absolute w-full h-full overflow-hidden touch-action[none] " {...bind()} key={i} style={{ display, x }}>
                   <animated.div
-                    tw="w-full h-full bg-cover bg-center touch-action[none] 
-                  "
+                    tw="w-full h-full bg-cover bg-center"
                     style={{ scale, backgroundImage: `url(${project.images[i]})` }} />
                 </animated.div>
               ))}
