@@ -14,7 +14,7 @@ import "animate.css/animate.min.css";
 import { Badge } from '@mantine/core';
 
 import { IBlogProps } from '../types'
-import projects from '../data/projects'
+import nProjects  from '../data/projects'
 import blogs from '../data/blogs'
 
 
@@ -84,7 +84,7 @@ const App = () => {
 
   }, [])
 
-  const v = <p></p>
+  const projects = nProjects.slice(0,4)
   return <>
     <div tw="w-full grid grid-cols-1 lg:grid-cols-2">
       <ClientOnly>
@@ -105,9 +105,9 @@ const App = () => {
           <h2 tw="block text-sm text-text-color text-align[justify] lg:(text-left text-lg) font-bold mt-5">
             Starcode is a freelancer and a front-end developer, with a passion for building and delivering great ideas into digital products.
 
-            When he's not writting codes, He hang's out with Bruce Wayne, am not kidding I hang out with batsy! Loves to play COD after long hours writting codes.
+            When he's not writting codes, He hang's out with Bruce Wayne, am not kidding I hang out with batsy! Also loves to play Call Of Duty after long hours writting codes.
 
-            Loves  learning new things and also sharing with the community and also support new devs trasitioning into tech,
+            Loves  learning new things and also sharing with the community and also support new devs trasitioning into tech.
 
           </h2>
         </AnimationOnScroll>

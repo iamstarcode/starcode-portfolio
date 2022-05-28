@@ -21,7 +21,8 @@ export interface IProject{
     platforms: string[],
     year:string,
     cover:string,
-    images:string[]
+    images:string[],
+    repo:string|null
 }
 
 export interface IBlogProps{

@@ -34,7 +34,7 @@ const Projects = () => {
 
   return <>
 
-    <div tw="w-full grid grid-cols-1 gap-3 px-4 py-4 md:(p-8 grid-cols-2 gap-5 max-w-5xl) mt-10">
+    <div tw="w-full grid grid-cols-1 gap-3 px-4 py-4 mx-auto md:(p-8 grid-cols-2 gap-5 max-w-5xl) mt-10">
       <div tw="p-4 md:(col-span-2 p-8)">
         <h2 tw="text-3xl text-special">Projects</h2>
       </div>

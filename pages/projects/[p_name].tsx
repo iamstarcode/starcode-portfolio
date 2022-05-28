@@ -11,7 +11,7 @@ import { useSpring, animated, config, easings, useSprings } from '@react-spring/
 import { AnimationOnScroll } from 'react-animation-on-scroll';
 import "animate.css/animate.min.css";
 
-import { Affix, Switch, ActionIcon, Badge } from '@mantine/core';
+import { Affix, Switch, ActionIcon, Badge, Avatar } from '@mantine/core';
 import { IProject } from '../../types'
 import { useRouter } from 'next/router'
 import { BsLink45Deg, BsQuestionCircle } from 'react-icons/bs'
@@ -24,6 +24,8 @@ import {
   SiNextdotjs,
   SiReact,
   SiTailwindcss,
+  SiLaravel,
+  SiVuedotjs
 } from 'react-icons/si'
 
 import { ImArrowLeft2 } from "react-icons/im"
@@ -42,6 +44,12 @@ const getIcon = (icon: string) => {
       break
     case "tailwindcss":
       jsx = <SiTailwindcss size="34" color="cyan" />
+      break;
+    case "laravel":
+      jsx = <SiLaravel size="34" color="red" />
+      break;
+    case "vue":
+      jsx = <SiVuedotjs size="34" color="green" />
       break;
     default:
       jsx = <BsQuestionCircle size="34" color="red" />
@@ -164,7 +172,11 @@ const Project = () => {
             <div tw="inline-flex items-center space-x-4 mt-3">
               <h2 tw="text-text-color font-medium">Source:</h2>
               <div tw="p-2 cursor-pointer" css={[styles.card]}>
-                <SiGithub size="24" />
+                {project.repo ? <a href={project.repo} target="_blank">
+                  <SiGithub size="24" />
+                </a>
+                  : <Avatar size="md" color="red" css={[project.color]} >NDA</Avatar>
+                }
               </div>
             </div>
           </div>
