@@ -15,7 +15,7 @@ import { Badge } from '@mantine/core';
 
 import { IBlogProps } from '../types'
 import nProjects  from '../data/projects'
-import blogs from '../data/blogs'
+import nBlogs from '../data/blogs'
 
 
 
@@ -85,6 +85,8 @@ const App = () => {
   }, [])
 
   const projects = nProjects.slice(0,4)
+  const blogs = nBlogs.slice(0,2)
+  
   return <>
     <div tw="w-full grid grid-cols-1 lg:grid-cols-2">
       <ClientOnly>
