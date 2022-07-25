@@ -24,7 +24,7 @@ const Card = ({ link, cover, color, subtitle, title, type }: ICardProps) => {
         alt="starcode picture"
       />
     </div>
-    <div tw="px-4 py-1 bg-base-100">
+    <div tw="px-4 py-1 bg-base-100 min-h-[64px]">
       <h2 css={[color]}
         tw="text-xl font-medium lg:(text-2xl)">
         {title}

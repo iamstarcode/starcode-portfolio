@@ -14,7 +14,7 @@ import "animate.css/animate.min.css";
 import { Badge } from '@mantine/core';
 
 import { IBlogProps } from '../types'
-import nProjects  from '../data/projects'
+import nProjects from '../data/projects'
 import nBlogs from '../data/blogs'
 
 
@@ -24,6 +24,8 @@ import { SiReact, SiHtml5, SiCss3, SiJavascript, SiNextdotjs, SiTailwindcss } fr
 import { IProject } from '../types'
 import ClientOnly from '../utils/clientonly'
 import Card from '../components/Card'
+
+import { motion } from 'framer-motion'
 
 const styles = {
   card: tw` w-11 h-11 flex justify-center items-center bg-base-100 box-shadow[ 0rem 0.5rem calc(4 * 0.5rem) var(--shadow-color)] rounded-lg`
@@ -84,8 +86,9 @@ const App = () => {
 
   }, [])
 
-  const projects = nProjects.slice(0,4)
-  const blogs = nBlogs.slice(0,2)
+  const projects = nProjects.slice(0, 4)
+  const blogs = nBlogs.slice(0, 2)
+
   
   return <>
     <div tw="w-full grid grid-cols-1 lg:grid-cols-2">
@@ -115,8 +118,11 @@ const App = () => {
         </AnimationOnScroll>
       </ClientOnly>
 
+
+
       <div tw="w-full flex justify-center items-center">
         <ClientOnly>
+
           <AnimationOnScroll animateOnce={true} animateIn="animate__bounceIn">
             <div tw="relative flex justify-center items-center w-52 h-52 mt-5  box-shadow[ 0rem 0.5rem calc(4 * 0.5rem) var(--shadow-color)] rounded-xl"
             >
@@ -183,8 +189,7 @@ const App = () => {
           </AnimationOnScroll>
         </ClientOnly>
       </div>
-
-
+    
       <div tw="px-4 lg:col-span-2 mt-16 mb-10  ">
         <h2
           tw="text-sm text-text-color py-1 font-bold border-b-2 border-b-special lg:(text-left text-lg)">
@@ -251,8 +256,6 @@ const App = () => {
     </div>
   </>
 }
-
-
 App.getLayout = function getLayout(page: ReactElement) {
   return (<DefaultLayout>{page}</DefaultLayout>)
 }
