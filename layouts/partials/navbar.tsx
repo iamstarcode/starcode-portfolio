@@ -12,6 +12,7 @@ import { motion } from 'framer-motion';
 import { useToggle } from '@mantine/hooks';
 
 import tw from 'twin.macro';
+import { useEffect } from 'react';
 
 const NavBar = () => {
 
@@ -36,25 +37,34 @@ const NavBar = () => {
       duration: 300
     })
 
-  //console.log(router.asPath)
-  //console.log(router.asPath.lastIndexOf('/projects'))
-  // router.basePath === item[1]
+  const transition = {
+    type: "spring",
+    damping: 30,
+    stiffness: 110
+  }
 
   const variants = {
     open: {
-      scale: 1,
-      rotateZ: 270
+      rotateZ: -360
     },
-    closed: {
-      scale: 0,
+    close: {
       rotateZ: 0
     }
   }
 
-  return (<>
-    <div ref={clickOutsideRef} id="navbar" tw="z-50 w-full text-gray-700 fixed md:fixed flex-none top-0 bg-transparent backdrop-blur-sm shadow-sm"
+  const navVariant = {
+    close: (w: number) => ({
+      y: w > 760 ? 0 : -250, //if on big screen default to 0
+      opacity: w > 760 ? 1 : 0
+    }),
+    open: {
+      y: 0,
+      opacity: 1
+    }
+  }
 
-    >
+  return (<>
+    <div ref={clickOutsideRef} id="navbar" tw="z-50 w-full text-gray-700 fixed md:fixed flex-none top-0 bg-transparent backdrop-blur-sm shadow-sm">
       <div tw="max-w-7xl mx-auto">
         <div css={[!burger ? tw`h-14` : ""]} tw="flex flex-col px-4 md:items-center md:justify-between md:flex-row md:px-6 lg:px-8">
           <div tw="w-full flex flex-row items-center justify-between">
@@ -82,30 +92,13 @@ const NavBar = () => {
               </div>
             </Link>
             <button tw="p-3 rounded-lg md:hidden cursor-pointer" onClick={() => toggle()}>
-              {/*     <animated.svg style={
-                {
-                  display:"none",
-                  scale: s.to({
-                    range: [0, 0.25, 0.35, 0.45, 0.55, 0.65, 0.75, 1],
-                    output: [1, 2.7, 2, 2.7, 2, 1.9, 1.5, 1],
-                  }),
-                  rotateZ: r,
-                  opacity: o.to({
-                    range: [0, 0.25, 0.35, 0.45, 0.55, 0.65, 0.75, 1],
-                    output: [1, 0.75, 0.65, 0.25, 0.45, 0.65, 0.75, 1],
-                  })
-                }
-              } fill="currentColor" viewBox="0 0 20 20" tw="w-6 h-6">
-                {!burger && <path fillRule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM9 15a1 1 0 011-1h6a1 1 0 110 2h-6a1 1 0 01-1-1z" clipRule="evenodd"></path>}
-                {burger && <path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd"></path>}
-              </animated.svg>
- */}
               <motion.svg
                 fill="currentColor"
                 viewBox="0 0 20 20"
                 tw="w-6 h-6"
                 animate={burger ? "open" : "close"}
                 variants={variants}
+                transition={transition}
                 type="spring"
               >
                 {!burger && <path fillRule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM9 15a1 1 0 011-1h6a1 1 0 110 2h-6a1 1 0 01-1-1z" clipRule="evenodd"></path>}
@@ -113,13 +106,13 @@ const NavBar = () => {
               </motion.svg>
             </button>
           </div>
-          <animated.nav
-            tw="w-full flex flex-col flex-grow pb-4 md:(pb-0 flex items-center space-x-2 justify-end flex-row)"
-            style={{
-              y: useViewport.width < 760 ? y : 0,
-              opacity: o,
-            }}
-
+          <motion.nav
+            tw="w-full flex flex-col flex-grow md:(pb-0 flex items-center space-x-2 justify-end flex-row)"
+            animate={burger ? "open" : "close"}
+            variants={navVariant}
+            transition={transition}
+            initial={{ y: -250 }}
+            custom={useViewport.width}
           >
             <Link href="/">
               <a
@@ -148,7 +141,6 @@ const NavBar = () => {
                 onClick={() => toggle()}
               >Blogs</a>
             </Link>
-
             <Link href="/about">
               <a
                 css={[
@@ -158,23 +150,7 @@ const NavBar = () => {
                 onClick={() => toggle()}
               >About</a>
             </Link>
-            {/* {[
-              ["Home", "/"],
-              ["Projects", "/projects"],
-              ["About", "/about"],
-              ["Porfolio", "/portfolio"]
-            ].map((item: any, index: number) => (
-              <Link href={item[1]} key={index}>
-                <a
-                  css={[
-                    tw`px-4 py-2 mt-2 text-sm font-semibold bg-transparent rounded-lg cursor-pointer lg:(mt-0)`,
-                    router.asPath.lastIndexOf(item[1]) > -1 ? tw`bg-special-bg text-white` : tw`transform transition-transform hover:scale-105 text-special hover:bg-base-100`,
-                  ]}
-                  onClick={() => toggle()}
-                >{item[0]}</a>
-              </Link>
-            ))} */}
-          </animated.nav>
+          </motion.nav>
         </div>
       </div>
 

@@ -140,8 +140,7 @@ const Social = () => {
     onRest: () => set2(!flip),
   })
   return <>
-    <Affix position={{ bottom: 24, left: 20 }}
-    >
+    <Affix position={{ bottom: 24, left: 20 }}>
       <animated.div
         style={
           {
