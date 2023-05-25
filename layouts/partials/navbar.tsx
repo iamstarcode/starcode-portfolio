@@ -4,6 +4,7 @@ import MenuDrawer from '@/components/MenuDrawer';
 import { socials, linksJsx } from '@/components/MenuDrawer';
 import MBurger from '@/components/MBurger';
 import DarkModeSwitch from '@/components/ThemeSwitcher';
+import ClientOnly from '@/utils/clientonly';
 
 const NavBar = () => {
   return (
@@ -23,7 +24,7 @@ const NavBar = () => {
           <nav className=" flex h-14 flex-col px-4 lg:flex-row lg:items-center lg:justify-between lg:px-4">
             <div className="flex w-full flex-row items-center justify-between">
               <Logo />
-              <div className="block lg:hidden">
+              <div className="inline-flex items-center space-x-2 lg:hidden">
                 <MBurger />
               </div>
             </div>
@@ -34,7 +35,9 @@ const NavBar = () => {
                   {linksJsx}
                 </ul>
                 <ul className="ml-6 inline-flex list-none items-center space-x-3 border-l border-slate-200 pl-6">
-                  <DarkModeSwitch />
+                  <ClientOnly>
+                    <DarkModeSwitch />
+                  </ClientOnly>
                   {socials}
                 </ul>
               </nav>

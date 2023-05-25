@@ -13,6 +13,8 @@ import {
 } from 'react-icons/si';
 import { useAtom } from 'jotai';
 import { burgerOpenedAtom } from '@/stores';
+import ClientOnly from '@/utils/clientonly';
+import DarkModeSwitch from './ThemeSwitcher';
 
 export const links = [
   {
@@ -84,6 +86,9 @@ function MenuDrawer() {
       withCloseButton={false}
     >
       <ul className="menu space-y-2 bg-base-100 p-2 text-base-content">
+        <ClientOnly>
+          <DarkModeSwitch />
+        </ClientOnly>
         {linksJsx}
       </ul>
       <div className="mt-5 flex flex-col items-center justify-items-center space-y-3">
