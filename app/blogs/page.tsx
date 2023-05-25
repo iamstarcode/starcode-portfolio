@@ -33,14 +33,14 @@ const Projects = async () => {
   };
 
   return (
-    <div className="w-full mx-auto lg:max-w-5xl">
-      <div className="inline-flex items-center w-full">
-        <h2 className="pr-3 font-bold text-lg lg:text-2xl">Blog Posts</h2>
-        <hr className="w-32 lg:w-64 h-1 my-4 bg-gray-200 border-0 rounded dark:bg-gray-700" />
+    <div className="mx-auto w-full lg:max-w-5xl">
+      <div className="inline-flex w-full items-center">
+        <h2 className="pr-3 text-lg font-bold lg:text-2xl">Blog Posts</h2>
+        <hr className="my-4 h-1 w-32 rounded border-0 bg-gray-200 dark:bg-gray-700 lg:w-64" />
       </div>
 
       <Suspense fallback={<Skeleton />}>
-        <div className="grid grid-cols-1 items-center gap-5 lg:grid-cols-2 mt-5">
+        <div className="mt-5 grid grid-cols-1 items-center gap-5 lg:grid-cols-2">
           {posts?.map(
             (
               { title, brief, coverImage, slug, dateAdded }: BlogProps,
@@ -57,6 +57,12 @@ const Projects = async () => {
               </Basic>
             ),
           )}
+
+          <a href="https://blog.iamstarcode.com" target="_blank">
+            <div className="cursor-pointer rounded-full bg-base-200 px-4 py-2 text-sm font-bold text-primary">
+              SEE MORE (blog.iamstarcode.com)
+            </div>
+          </a>
         </div>
       </Suspense>
     </div>

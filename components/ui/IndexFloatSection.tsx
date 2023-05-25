@@ -71,7 +71,7 @@ export default function IndexFloatSection() {
             height="256"
             width="256"
             alt="starcode picture"
-            className="rounded-full h-32 w-32 md:w-64 md:h-64"
+            className="rounded-full h-32 w-32 lg:w-64 lg:h-64"
           />
           <h2 className="text-xs text-special font-medium mt-2">
             Bakare Abiola
