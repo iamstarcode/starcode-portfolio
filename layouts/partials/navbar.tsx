@@ -1,161 +1,162 @@
+'use client';
+
+import { useEffect, useState } from 'react';
+
 import Link from 'next/link';
-import { useRouter } from 'next/router';
+import { usePathname } from 'next/navigation';
 
-import ClientOnly from '../../utils/clientonly'
+import { useDisclosure, useViewportSize } from '@mantine/hooks';
 
-import { useClickOutside, useViewportSize } from '@mantine/hooks';
+import { Logo } from '@/components/Logo';
 
-import { useSpring, animated, config } from '@react-spring/web'
-
-import { motion } from 'framer-motion';
-
-import { useToggle } from '@mantine/hooks';
-
-import tw from 'twin.macro';
-import { useEffect } from 'react';
+import { Burger, Drawer } from '@mantine/core';
+import { SiGmail, SiInstagram, SiLinkedin, SiTwitter } from 'react-icons/si';
+import { BsGithub } from 'react-icons/bs';
 
 const NavBar = () => {
+  const pathName = usePathname();
 
-  const router = useRouter();
-  const [burger, toggle] = useToggle(false, [false, true])
-  const clickOutsideRef = useClickOutside(() => toggle(false))
-  const useViewport = useViewportSize()
+  const { width } = useViewportSize();
 
-  const { s, r, o, y } = useSpring(
+  const [opened, { close, toggle }] = useDisclosure(false);
+
+  const CustomLink = ({ href, text }: { href: string; text: string }) => (
+    <li
+      className={`${pathName !== href ? 'transform transition-transform' : ''}`}
+    >
+      <Link
+        href={href}
+        onClick={close}
+        className={`${
+          pathName === href ? 'bg-primary text-white' : 'text-primary'
+        }`}
+      >
+        {text}
+      </Link>
+    </li>
+  );
+
+  const links = [
     {
-      s: burger ? 1 : 0,
-      r: burger ? 360 : 0,
-      o: burger ? 1 : useViewport.width > 760 ? 1 : 0,
-      y: burger ? 0 : -250,
-      from: {
-        s: 0,
-        r: 0,
-        o: 0,
-        y: 0
-      },
-      config: config.slow,
-      duration: 300
-    })
-
-  const transition = {
-    type: "spring",
-    damping: 30,
-    stiffness: 110
-  }
-
-  const variants = {
-    open: {
-      rotateZ: -360
+      href: '/',
+      text: 'Home',
     },
-    close: {
-      rotateZ: 0
-    }
-  }
+    {
+      href: '/projects',
+      text: 'Projects',
+    },
 
-  const navVariant = {
-    close: (w: number) => ({
-      y: w > 760 ? 0 : -250, //if on big screen default to 0
-      opacity: w > 760 ? 1 : 0
-    }),
-    open: {
-      y: 0,
-      opacity: 1
-    }
-  }
+    {
+      href: '/blogs',
+      text: 'Blogs',
+    },
+  ];
 
-  return (<>
-    <div ref={clickOutsideRef} id="navbar" tw="z-50 w-full text-gray-700 fixed md:fixed flex-none top-0 bg-transparent backdrop-blur-sm shadow-sm">
-      <div tw="max-w-7xl mx-auto">
-        <div css={[!burger ? tw`h-14` : ""]} tw="flex flex-col px-4 md:items-center md:justify-between md:flex-row md:px-6 lg:px-8">
-          <div tw="w-full flex flex-row items-center justify-between">
-            <Link passHref href="/">
-              <div tw="cursor-pointer ">
-                <svg width="50" height="50" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path fillRule="evenodd" clipRule="evenodd" d="M35.6821 18.0403L24.9224 54.0539L28.4005 54.1741L39.1603 18.1689L35.6821 18.0403Z" fill="#3E0EEB" />
-                  <path fillRule="evenodd" clipRule="evenodd" d="M40.0418 20.1861L44.5741 22.8068L49.1064 25.4191L44.5741 28.0397L40.0418 30.652V20.1861Z" fill="#FE2D04" />
-                  <path fillRule="evenodd" clipRule="evenodd" d="M40.0418 30.6677L49.0991 25.4191L49.1064 30.652V35.8923L40.0418 30.6677Z" fill="#FF6738" />
-                  <path fillRule="evenodd" clipRule="evenodd" d="M49.1064 35.8923L49.1148 30.652V25.4191L58.172 30.6593L49.1064 35.8923Z" fill="#FE0000" />
-                  <path fillRule="evenodd" clipRule="evenodd" d="M49.1064 35.8923L58.1647 30.6447L58.1793 41.1106L53.6471 38.4983L49.1064 35.8923Z" fill="#C10100" />
-                  <path fillRule="evenodd" clipRule="evenodd" d="M49.1064 35.8923L53.6397 38.5056L58.172 41.1252L49.1064 46.3582V35.8923Z" fill="#FE0000" />
-                  <path fillRule="evenodd" clipRule="evenodd" d="M40.0492 41.1336L49.1064 35.8923L49.1221 46.3582L40.0492 41.1336Z" fill="#BC0078" />
-                  <path fillRule="evenodd" clipRule="evenodd" d="M40.0492 41.1336L44.5814 43.7459L49.1148 46.3665L40.0492 51.5995V41.1336Z" fill="#4E0096" />
-                  <path fillRule="evenodd" clipRule="evenodd" d="M49.1148 25.4191L49.0991 14.9532L58.172 20.1788L49.1148 25.4191Z" fill="#FF6738" />
-                  <path fillRule="evenodd" clipRule="evenodd" d="M49.1148 14.9689L58.172 9.72026L58.1877 20.1861L49.1148 14.9689Z" fill="#FFCE34" />
-                  <path fillRule="evenodd" clipRule="evenodd" d="M23.5367 20.48L14.4638 25.7056L23.5221 30.9459L23.5367 20.48Z" fill="#FE2D04" />
-                  <path fillRule="evenodd" clipRule="evenodd" d="M23.5221 30.9459L14.4638 25.7056L14.4565 30.9386V36.1715L23.5221 30.9459Z" fill="#FF6738" />
-                  <path fillRule="evenodd" clipRule="evenodd" d="M14.4565 36.1715V30.9386L14.4638 25.7056L5.39085 30.9312L14.4565 36.1715Z" fill="#FE0000" />
-                  <path fillRule="evenodd" clipRule="evenodd" d="M14.4565 36.1715L5.39085 30.9312V36.1642L5.38353 41.3971L14.4565 36.1715Z" fill="#C10100" />
-                  <path fillRule="evenodd" clipRule="evenodd" d="M23.5064 41.4191L18.9814 38.7911L14.4565 36.1715L14.4492 41.4044L14.4335 46.6374L23.5064 41.4191Z" fill="#BC0078" />
-                  <path fillRule="evenodd" clipRule="evenodd" d="M23.5064 41.4191L18.9741 44.0324L14.4335 46.6374L23.4918 51.885L23.5064 41.4191Z" fill="#4E0096" />
-                  <path fillRule="evenodd" clipRule="evenodd" d="M14.4335 46.6374L14.4492 41.4118L14.4565 36.1715L5.38353 41.3888L14.4335 46.6374Z" fill="#FE0000" />
-                </svg>
-              </div>
-            </Link>
-            <button tw="p-3 rounded-lg md:hidden cursor-pointer" onClick={() => toggle()}>
-              <motion.svg
-                fill="currentColor"
-                viewBox="0 0 20 20"
-                tw="w-6 h-6"
-                animate={burger ? "open" : "close"}
-                variants={variants}
-                transition={transition}
-                type="spring"
-              >
-                {!burger && <path fillRule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM9 15a1 1 0 011-1h6a1 1 0 110 2h-6a1 1 0 01-1-1z" clipRule="evenodd"></path>}
-                {burger && <path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd"></path>}
-              </motion.svg>
-            </button>
-          </div>
-          <motion.nav
-            tw="w-full flex flex-col flex-grow md:(pb-0 flex items-center space-x-2 justify-end flex-row)"
-            animate={burger ? "open" : "close"}
-            variants={navVariant}
-            transition={transition}
-            initial={{ y: -250 }}
-            custom={useViewport.width}
+  const socials = (
+    <div className="inline-flex items-center space-x-4">
+      <button
+        id="github"
+        className="h-8 w-8 transform rounded-full border-2 border-gray-500 bg-white text-2xl text-gray-600 duration-500 hover:scale-110 hover:bg-gray-600 hover:text-white"
+      >
+        <a href="https://github.com/iamstarcode" target="_blank">
+          <BsGithub size="20" className="w-full" />
+        </a>
+      </button>
+      <button className="h-8 w-8 rounded-full border-2 border-blue-600 bg-white text-blue-600 transition-transform duration-500 hover:scale-110 hover:bg-blue-600 hover:text-white">
+        <a href="https://www.linkedin.com/in/iamstarcode/" target="_blank">
+          <SiLinkedin size="20" className="w-full" />
+        </a>
+      </button>
+      <button className="h-8 w-8 rounded-full border-2 border-blue-600 bg-white text-blue-600 transition-transform duration-500 hover:scale-110 hover:bg-blue-600 hover:text-white">
+        <a href="https://twitter.com/i_am_starcode" target="_blank">
+          <SiTwitter size="20" className="w-full" />
+        </a>
+      </button>
+      <button
+        id="instagram"
+        className="h-8 w-8 rounded-full border-2 border-pink-500 bg-white text-pink-600 transition-transform duration-500 hover:scale-110 hover:border-0 hover:bg-gradient-to-b hover:from-indigo-600 hover:via-pink-600 hover:to-yellow-500 hover:text-white"
+      >
+        <a href="https://www.instagram.com/i_am_starcode" target="_blank">
+          <SiInstagram
+            size="20"
+            className="w-full text-[border-pink-500] hover:text-white"
+          />
+        </a>
+      </button>
+    </div>
+  );
+  return (
+    <>
+      <Drawer
+        opened={opened}
+        onClose={close}
+        size="80%"
+        classNames={{
+          content: 'bg-base-100',
+          header: 'bg-base-100',
+        }}
+        withCloseButton={false}
+      >
+        <ul className="menu space-y-2 bg-base-100 p-2 text-base-content">
+          {links.map((link: any, index) => (
+            <CustomLink key={index} href={link.href} text={link.text} />
+          ))}
+        </ul>
+      </Drawer>
+      <div className="shadow-sm backdrop-blur-sm ">
+        <div
+          id="#navbar"
+          className="fixed z-40 mx-auto w-full max-w-6xl flex-none text-gray-700 lg:fixed "
+          style={{
+            position: 'sticky',
+            top: 0,
+            width: '100%',
+            backgroundColor: 'transparent',
+          }}
+        >
+          <nav
+            className={`${
+              !opened ? `` : ''
+            } flex h-14 flex-col px-4 lg:flex-row lg:items-center lg:justify-between lg:px-4`}
           >
-            <Link href="/">
-              <a
-                css={[
-                  tw`px-4 py-2 mt-2 text-sm font-semibold bg-transparent rounded-lg cursor-pointer lg:(mt-0)`,
-                  router.pathname === "/" ? tw`bg-special-bg text-white` : tw`transform transition-transform hover:scale-105 text-special hover:bg-base-100`,
-                ]}
-                onClick={() => toggle()}
-              >Home</a>
-            </Link>
-            <Link href="/projects">
-              <a
-                css={[
-                  tw`px-4 py-2 mt-2 text-sm font-semibold bg-transparent rounded-lg cursor-pointer lg:(mt-0)`,
-                  router.asPath.lastIndexOf("/projects") > -1 ? tw`bg-special-bg text-white` : tw`transform transition-transform hover:scale-105 text-special hover:bg-base-100`,
-                ]}
-                onClick={() => toggle()}
-              >Projects</a>
-            </Link>
-            <Link href="/blogs">
-              <a
-                css={[
-                  tw`px-4 py-2 mt-2 text-sm font-semibold bg-transparent rounded-lg cursor-pointer lg:(mt-0)`,
-                  router.asPath.lastIndexOf("/blogs") > -1 ? tw`bg-special-bg text-white` : tw`transform transition-transform hover:scale-105 text-special hover:bg-base-100`,
-                ]}
-                onClick={() => toggle()}
-              >Blogs</a>
-            </Link>
-            <Link href="/about">
-              <a
-                css={[
-                  tw`px-4 py-2 mt-2 text-sm font-semibold bg-transparent rounded-lg cursor-pointer lg:(mt-0)`,
-                  router.pathname === "/about" ? tw`bg-special-bg text-white` : tw`transform transition-transform hover:scale-105 text-special hover:bg-base-100`,
-                ]}
-                onClick={() => toggle()}
-              >About</a>
-            </Link>
-          </motion.nav>
+            <div className="flex w-full flex-row items-center justify-between">
+              <Logo />
+
+              {width < 728 && (
+                <Burger opened={opened} onClick={toggle} aria-label="burger" />
+              )}
+            </div>
+
+            {width >= 768 && (
+              <nav className="hidden lg:flex lg:flex-row lg:items-center lg:justify-end lg:space-x-2 lg:pb-0">
+                <ul className="menu menu-horizontal space-x-2 bg-base-100 p-2">
+                  {links.map(({ href, text }: any, index) => (
+                    <>
+                      <li key={index}>
+                        <Link
+                          href={href}
+                          onClick={close}
+                          className={`${
+                            pathName === href
+                              ? 'bg-primary text-white'
+                              : 'text-primary '
+                          } p-4 py-2 hover:font-medium`}
+                        >
+                          {text}
+                        </Link>
+                      </li>
+                    </>
+                  ))}
+                  {socials}
+                </ul>
+                <ul className="inline-flex list-none space-x-3"></ul>
+              </nav>
+            )}
+          </nav>
         </div>
       </div>
-
-    </div>
-  </>);
-}
+    </>
+  );
+};
 
 export default NavBar;

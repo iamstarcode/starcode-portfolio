@@ -1,33 +1,33 @@
-import { TwStyle } from "twin.macro";
-
 export interface ICardProps {
-    link: string,
-    cover: string,
-    color?: TwStyle,
-    title?:string,
-    subtitle: string,
-    type:"project"|"blog"
-  }
-
-export interface IProject{
-    id: string,
-    title: string,
-    subtitle:string,
-    about:string,
-    live_url:string,
-    color: TwStyle,
-    link: string,
-    stack:string[]
-    platforms: string[],
-    year:string,
-    cover:string,
-    images:string[],
-    repo:string|null
+  link: string;
+  cover: string;
+  color?: string;
+  title?: string;
+  subtitle: string;
+  type: 'project' | 'blog';
 }
 
-export interface IBlogProps{
-    title:string,
-    cover:string,
-    link: string,
+export interface IProject {
+  id: string;
+  title: string;
+  subtitle: string;
+  about: string;
+  live_url: string;
+  color: string;
+  link: string;
+  stack: string[];
+  platforms: string[];
+  year: string;
+  cover: string;
+  images: string[];
+  repo: string | null;
 }
 
+export interface BlogProps {
+  //color: string;
+  brief: string;
+  coverImage: string;
+  slug: string;
+  title: string;
+  dateAdded: string;
+}
