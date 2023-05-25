@@ -3,6 +3,7 @@ import MenuDrawer from '@/components/MenuDrawer';
 
 import { socials, linksJsx } from '@/components/MenuDrawer';
 import MBurger from '@/components/MBurger';
+import DarkModeSwitch from '@/components/ThemeSwitcher';
 
 const NavBar = () => {
   return (
@@ -27,12 +28,15 @@ const NavBar = () => {
               </div>
             </div>
 
-            <div className=":block hidden">
-              <nav className="hidden lg:flex lg:flex-row lg:items-center lg:justify-end lg:space-x-2 lg:pb-0">
+            <div className="hidden lg:flex">
+              <nav className="flex lg:flex-row lg:items-center lg:justify-end lg:space-x-2 lg:pb-0">
                 <ul className="menu menu-horizontal space-x-2 bg-base-100 p-2">
                   {linksJsx}
                 </ul>
-                <ul className="inline-flex list-none space-x-3"> {socials}</ul>
+                <ul className="ml-6 inline-flex list-none items-center space-x-3 border-l border-slate-200 pl-6">
+                  <DarkModeSwitch />
+                  {socials}
+                </ul>
               </nav>
             </div>
           </nav>

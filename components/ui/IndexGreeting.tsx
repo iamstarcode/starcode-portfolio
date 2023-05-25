@@ -53,17 +53,23 @@ export default function IndexGreeting() {
           target="_blank"
           href="https://docs.google.com/document/d/1iH9VziBg1alVGUDiJNXevmdwpAloQVzy7Cr166hV7w0/edit?usp=sharing"
         >
-          <Button
+          {/*    <Button
             classNames={{
-              root: ' btn rounded-lg bg-gradient-to-r from-primary to-secondary border-0',
+              root: 'btn bnt-primary rounded-lg bg-gradient-to-r from-primary to-secondary border-0',
               inner: 'px-5 y-4 b-0',
               label: 'text-md',
             }}
+            className="border-0"
             rightIcon={<BsBoxArrowDownRight size="18" />}
           >
             Resume
-          </Button>
+          </Button> */}
+          <button className="y-4 b-0 text-md  btn-primary btn gap-2 rounded-lg px-8">
+            Resume
+            <BsBoxArrowDownRight size="18" />
+          </button>
         </a>
+
         <a href="mailto:iamstarcode@gmail.com">
           <button className="y-4 b-0 text-md btn-outline btn-primary btn rounded-lg px-10">
             Contact

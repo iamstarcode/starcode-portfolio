@@ -60,7 +60,7 @@ const Projects = async () => {
 
           <a href="https://blog.iamstarcode.com" target="_blank">
             <div className="cursor-pointer rounded-full bg-base-200 px-4 py-2 text-sm font-bold text-primary">
-              SEE MORE (blog.iamstarcode.com)
+              SEE MORE @ blog.iamstarcode.com
             </div>
           </a>
         </div>

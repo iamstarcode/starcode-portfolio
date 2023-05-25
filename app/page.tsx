@@ -18,7 +18,7 @@ const App = async () => {
   const posts = data.data.user.publication.posts.slice(0, 4);
   return (
     <>
-      <div className="w-full grid grid-cols-1 gap-5 lg:grid-cols-2">
+      <div className="grid w-full grid-cols-1 gap-5 lg:grid-cols-2">
         <IndexGreeting />
         {/*   <motion.div
           className="p-4 lg:p-8"
@@ -46,16 +46,16 @@ const App = async () => {
             into tech.
           </h2>
         </motion.div> */}
-        <div className="w-full flex justify-center items-center lg:justify-end">
+        <div className="flex w-full items-center justify-center lg:justify-end">
           <IndexFloatSection />
         </div>
 
-        <div className="lg:col-span-2 mt-16">
-          <div className="inline-flex items-center w-full">
-            <h2 className="pr-3 font-bold text-2xl">Projects</h2>
-            <hr className="w-32 lg:w-64 h-1 my-4 bg-gray-200 border-0 rounded dark:bg-gray-700" />
+        <div className="mt-16 lg:col-span-2">
+          <div className="inline-flex w-full items-center">
+            <h2 className="pr-3 text-2xl font-bold">Projects</h2>
+            <hr className="my-4 h-1 w-32 rounded border-0 bg-gray-200 dark:bg-gray-700 lg:w-64" />
           </div>
-          <div className="py-4 lg:p-8 lg:max-w-5xl mx-auto">
+          <div className="mx-auto py-4 lg:max-w-5xl lg:p-8">
             <div className="grid grid-cols-1 items-center gap-5 lg:grid-cols-2 ">
               {projects &&
                 projects.map(
@@ -77,21 +77,21 @@ const App = async () => {
                 )}
             </div>
           </div>
-          <div className="flex justify-start mt-5 lg:justify-end">
+          <div className="mt-5 flex justify-start lg:justify-end">
             <Link passHref href="/projects">
-              <div className="px-4 py-2 bg-base-200 text-primary text-sm font-bold cursor-pointer rounded-full">
+              <div className="cursor-pointer rounded-full bg-base-200 px-4 py-2 text-sm font-bold text-primary">
                 SEE MORE
               </div>
             </Link>
           </div>
         </div>
 
-        <div className="lg:col-span-2 mt-16">
-          <div className="inline-flex items-center w-full">
-            <h2 className="pr-3 font-bold text-2xl">Blog Posts</h2>
-            <hr className="w-32 lg:w-64 h-1 my-4 bg-gray-200 border-0 rounded dark:bg-gray-700" />
+        <div className="mt-16 lg:col-span-2">
+          <div className="inline-flex w-full items-center">
+            <h2 className="pr-3 text-2xl font-bold">Blog Posts</h2>
+            <hr className="my-4 h-1 w-32 rounded border-0 bg-gray-200 dark:bg-gray-700 lg:w-64" />
           </div>
-          <div className="py-4 lg:p-8 lg:max-w-5xl mx-auto">
+          <div className="mx-auto py-4 lg:max-w-5xl lg:p-8">
             <div className="grid grid-cols-1 gap-5 lg:grid-cols-2">
               {posts?.map(
                 (
@@ -112,9 +112,9 @@ const App = async () => {
             </div>
           </div>
 
-          <div className="flex justify-start mt-5 lg:justify-end">
+          <div className="mt-5 flex justify-start lg:justify-end">
             <Link passHref href="/blogs">
-              <div className="px-4 py-2 bg-base-200 text-primary text-sm font-bold cursor-pointer rounded-full">
+              <div className="cursor-pointer rounded-full bg-base-200 px-4 py-2 text-sm font-bold text-primary">
                 SEE MORE
               </div>
             </Link>
