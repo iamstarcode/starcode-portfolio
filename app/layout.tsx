@@ -24,7 +24,7 @@ export default function RootLayout({
       <body className="m-0">
         <Providers>
           <div
-            className={`${quicksand.variable} bg-base-100 font-quicksand text-base-content`}
+            className={`${quicksand.variable} bg-base-100 font-quicksand text-[#F2F2F2]`}
           >
             <NavBar />
             <div className="mx-auto w-full max-w-6xl px-4 py-12">

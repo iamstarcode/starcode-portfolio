@@ -17,7 +17,7 @@ export default async function getPosts() {
   `;
 
   const res = await fetch('https://api.hashnode.com/', {
-    next: { revalidate: 60 * 1 * 60 * 24 },
+    //next: { revalidate: 60 * 1 * 60 * 24 },
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
