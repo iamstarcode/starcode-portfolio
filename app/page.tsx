@@ -79,7 +79,7 @@ const App = async () => {
           </div>
           <div className="mt-5 flex justify-start lg:justify-end">
             <Link passHref href="/projects">
-              <div className="cursor-pointer rounded-full bg-base-200 px-4 py-2 text-sm font-bold text-primary">
+              <div className="cursor-pointer shadow-[0rem_0.5rem_calc(4*0.5rem)_var(--shadow-color)] rounded-full bg-base-200 px-4 py-2 text-sm font-bold text-primary">
                 SEE MORE
               </div>
             </Link>
@@ -114,7 +114,7 @@ const App = async () => {
 
           <div className="mt-5 flex justify-start lg:justify-end">
             <Link passHref href="/blogs">
-              <div className="cursor-pointer rounded-full bg-base-200 px-4 py-2 text-sm font-bold text-primary">
+              <div className="cursor-pointer rounded-full shadow-[0rem_0.5rem_calc(4*0.5rem)_var(--shadow-color)] bg-base-200 px-4 py-2 text-sm font-bold text-primary">
                 SEE MORE
               </div>
             </Link>
