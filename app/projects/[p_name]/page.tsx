@@ -126,7 +126,7 @@ const Project = () => {
   return (
     <>
       {project && (
-        <div className="w-full">
+        <div className={`w-full`} style={{ color: project.color }}>
           <Basic variants={variants}>
             <div style={{ color: project.color }}>
               <Link href="/projects">
@@ -135,17 +135,17 @@ const Project = () => {
             </div>
             <section className="h-full w-full mt-5 lg:flex lg:flex-row">
               <div className="lg:w-[50%]">
-                <h2 className="font-size[2.65rem] mt-2" css={[project.color]}>
+                <h2 className="font-size[2.65rem] mt-2" style={{ color: project.color }}>
                   {project.title}
                 </h2>
-                <h2 className=" text-lg leading-5 text-text-color lg:text-xl my-3">
+                <h2 className=" text-lg leading-5 text-text-color lg:text-xl my-3" style={{ color: project.color }}>
                   {project.about}
                 </h2>
 
                 <a
                   href={'https://' + project.live_url}
                   className=" inline-flex space-x-2"
-                  css={[project.color]}
+
                   target="_blank"
                 >
                   <BsLink45Deg size="24" />
@@ -240,13 +240,13 @@ const Project = () => {
 
                 <div className="inline-flex items-center space-x-4 mt-3">
                   <h2 className="text-text-color font-medium">Source:</h2>
-                  <div className="p-2 cursor-pointer" css={[styles.card]}>
+                  <div className="p-2 cursor-pointer flex space-x-2 text-sm justify-center items-center bg-base-100 box-shadow[ 0rem 0.5rem calc(4 * 0.5rem) var(--shadow-color)] rounded-lg" >
                     {project.repo ? (
                       <a href={project.repo} target="_blank">
                         <SiGithub size="24" />
                       </a>
                     ) : (
-                      <Avatar size="md" color="red" css={[project.color]}>
+                      <Avatar size="md" color="red">
                         NDA
                       </Avatar>
                     )}
