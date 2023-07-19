@@ -16,6 +16,7 @@ const App = async () => {
   const data: any = await getPosts();
 
   const posts = data.data.user.publication.posts.slice(0, 4);
+
   return (
     <>
       <div className="grid w-full grid-cols-1 gap-5 lg:grid-cols-2">
