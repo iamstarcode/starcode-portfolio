@@ -27,8 +27,8 @@ export const links = [
   },
 
   {
-    href: '/blogs',
-    text: 'Blogs',
+    href: '/blog',
+    text: 'Blog',
   },
 ];
 
