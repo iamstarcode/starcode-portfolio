@@ -2,7 +2,6 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { theme } from 'antd';
 
 export interface IAnimatedTextProps {
   text: string;
@@ -10,10 +9,6 @@ export interface IAnimatedTextProps {
 }
 
 const AnimatedText = ({ text }: IAnimatedTextProps) => {
-  const {
-    token: { colorPrimary },
-  } = theme.useToken();
-
   const words = text.split(' ');
   const container = {
     hidden: { opacity: 0 },
@@ -66,9 +61,9 @@ const AnimatedText = ({ text }: IAnimatedTextProps) => {
   };
 
   return (
-    <div className="w-full mx-auto flex justify-center overflow-hidden">
+    <div className="mx-auto flex w-full justify-center overflow-hidden">
       <motion.h1
-        className="w-full inline-block font-semibold text-5xl text-center lg:text-left"
+        className="inline-block w-full text-center text-5xl font-semibold lg:text-left"
         variants={container}
         initial="hidden"
         animate="visible"
@@ -76,7 +71,7 @@ const AnimatedText = ({ text }: IAnimatedTextProps) => {
         {words.map((word: any, index: number) => (
           <motion.span
             variants={child}
-            className="inline-block mr-2 py-1 capitalize"
+            className="mr-2 inline-block py-1 capitalize"
             key={index}
           >
             {word}
