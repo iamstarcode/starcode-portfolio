@@ -1,4 +1,3 @@
-import BlogSkeleton from '@/components/ui/BlogSkeleton';
 import Image from 'next/image';
 
 export default function Loading() {
