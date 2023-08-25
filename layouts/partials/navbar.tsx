@@ -49,19 +49,4 @@ const NavBar = () => {
   );
 };
 
-{
-  /* <li key={index}>
-<Link
-  href={href}
-  className={`${
-    pathName === href
-      ? 'bg-primary text-white'
-      : 'text-primary '
-  } p-4 py-2 hover:font-medium`}
->
-  {text}
-</Link>
-</li> */
-}
-
 export default NavBar;
