@@ -11,6 +11,10 @@ import {
   SiTailwindcss,
   SiNextdotjs,
   SiJavascript,
+  SiNodedotjs,
+  SiNestjs,
+  SiExpress,
+  SiTypescript,
 } from 'react-icons/si';
 import FloatingCard from '../FloatingCard';
 
@@ -38,7 +42,7 @@ export default function IndexFloatSection() {
       viewport={viewport}
     >
       {/* Floating Card */}
-      <div className="relative flex justify-center items-center w-64 h-64 lg:h-96 lg:w-96 shadow-[0rem_0.5rem_calc(4*0.5rem)_var(--shadow-color)] rounded-xl">
+      <div className="relative flex h-64 w-64 items-center justify-center rounded-xl shadow-[0rem_0.5rem_calc(4*0.5rem)_var(--shadow-color)] lg:h-96 lg:w-96">
         <FloatingCard>
           <SiHtml5 size="34" color="orange" className="" />
         </FloatingCard>
@@ -60,6 +64,22 @@ export default function IndexFloatSection() {
         </FloatingCard>
 
         <FloatingCard>
+          <SiNodedotjs size="34" color="green" />
+        </FloatingCard>
+
+        <FloatingCard>
+          <SiExpress size="34" color="black" />
+        </FloatingCard>
+
+        <FloatingCard>
+          <SiNestjs size="34" color="red" />
+        </FloatingCard>
+
+        <FloatingCard>
+          <SiTypescript size="34" color="blue" />
+        </FloatingCard>
+
+        <FloatingCard>
           <div className="bg-black p-0">
             <SiJavascript size="34" color="yellow" />
           </div>
@@ -71,14 +91,14 @@ export default function IndexFloatSection() {
             height="256"
             width="256"
             alt="starcode picture"
-            className="rounded-full h-32 w-32 lg:w-64 lg:h-64"
+            className="h-32 w-32 rounded-full lg:h-64 lg:w-64"
           />
-          <h2 className="text-xs text-special font-medium mt-2">
+          <h2 className="text-special mt-2 text-xs font-medium">
             Bakare Abiola
           </h2>
-          <div className="inline-flex items-center mt-2 ">
+          <div className="mt-2 inline-flex items-center ">
             <BiMap color="red" />
-            <p className="text-sm text-text-color">Gotham</p>
+            <p className="text-text-color text-sm">Gotham</p>
           </div>
         </div>
       </div>

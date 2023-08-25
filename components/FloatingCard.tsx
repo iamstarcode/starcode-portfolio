@@ -23,8 +23,8 @@ const FloatingCard: React.FC<IFloatingCard> = ({
   left = '0',
   children,
 }: IFloatingCard) => {
-  const min = -120;
-  const max = 120;
+  const min = -200;
+  const max = 200;
   const rand = (min: number, max: number) => {
     return {
       x: Math.floor(min + Math.random() * (max - min)),
@@ -55,7 +55,7 @@ const FloatingCard: React.FC<IFloatingCard> = ({
       <motion.div
         /* css={{ position, top, left, right, bottom, zIndex: '40' }} */
         /* css={position} */
-        className="absolute w-11 h-11 flex justify-center items-center shadow-[0rem_0.5rem_calc(4*0.5rem)_var(--shadow-color)] rounded-lg z-40 bg-base-100"
+        className="absolute z-40 flex h-11 w-11 items-center justify-center rounded-lg bg-base-100 shadow-[0rem_0.5rem_calc(4*0.5rem)_var(--shadow-color)]"
         style={{
           x: springX,
           y: springY,
