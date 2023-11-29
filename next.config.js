@@ -8,12 +8,16 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
 module.exports = withBundleAnalyzer({
   reactStrictMode: false,
   transpilePackages: ['antd'],
-  experimental: { appDir: true },
   eslint: {
     ignoreDuringBuilds: true,
   },
   images: {
-    domains: ['cdn.hashnode.com'],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'cdn.hashnode.com',
+      },
+    ],
   },
 });
 
