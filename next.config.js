@@ -1,4 +1,4 @@
-//const withTwin = require('./withTwin.js');
+/** @type {import('next').NextConfig} */
 
 const withBundleAnalyzer = require('@next/bundle-analyzer')({
   enabled: process.env.ANALYZE === 'true',
@@ -7,7 +7,7 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
 
 module.exports = withBundleAnalyzer({
   reactStrictMode: false,
-  transpilePackages: ['antd'],
+  output: 'export',
   eslint: {
     ignoreDuringBuilds: true,
   },
