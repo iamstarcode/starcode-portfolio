@@ -1,4 +1,4 @@
-import { Logo } from '@/components/Logo';
+import Logo from '@/components/Logo';
 import MenuDrawer from '@/components/MenuDrawer';
 
 import { socials, linksJsx } from '@/components/MenuDrawer';

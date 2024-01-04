@@ -1,6 +1,6 @@
 import Link from 'next/link';
 
-export const Logo = () => (
+const Logo = () => (
   <Link href="/">
     <StarcodeSVG />
   </Link>
