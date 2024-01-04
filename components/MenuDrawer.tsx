@@ -94,7 +94,7 @@ function MenuDrawer() {
       <div className="mt-5 flex flex-col items-center justify-items-center space-y-3">
         {socials}
         <Image
-          src="/img/me1.jpg"
+          src="/img/me.jpg"
           height="256"
           width="256"
           alt="starcode picture"
