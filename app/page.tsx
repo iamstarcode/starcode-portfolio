@@ -21,32 +21,6 @@ const App = async () => {
     <>
       <div className="grid w-full grid-cols-1 gap-5 lg:grid-cols-2">
         <IndexGreeting />
-        {/*   <motion.div
-          className="p-4 lg:p-8"
-          initial={{ x: -300 }}
-          whileInView={{ x: 0 }}
-          transition={transition}
-          viewport={viewport}
-        >
-          <h2 className="text-sm text-text-color lg:( text-lg) font-bold mt-5">
-            Hi!, I'm Bakare Abiola alias!
-          </h2>
-
-          <h2 className="text-sm text-text-color lg:( text-lg) font-bold mt-5"></h2>
-          <h2 className="text-6xl mt-2 text-special">Starcode</h2>
-          <h2 className=" text-sm text-text-color lg:( text-lg) font-bold mt-5">
-            catchy right? Lol
-          </h2>
-          <h2 className="block text-sm text-text-color text-align[justify] lg:(text-left text-lg) font-bold mt-5">
-            Starcode is a freelancer and a front-end developer, with a passion
-            for building and delivering great ideas into digital products. When
-            he's not writting codes, He hang's out with Bruce Wayne, am not
-            kidding I hang out with batsy! Also loves to play Call Of Duty after
-            long hours writting codes. Loves learning new things and also
-            sharing with the community and also support new devs trasitioning
-            into tech.
-          </h2>
-        </motion.div> */}
         <div className="flex w-full items-center justify-center lg:justify-end">
           <IndexFloatSection />
         </div>
@@ -80,7 +54,7 @@ const App = async () => {
           </div>
           <div className="mt-5 flex justify-start lg:justify-end">
             <Link passHref href="/projects">
-              <div className="cursor-pointer shadow-[0rem_0.5rem_calc(4*0.5rem)_var(--shadow-color)] rounded-full bg-base-200 px-4 py-2 text-sm font-bold text-primary">
+              <div className="cursor-pointer rounded-full bg-base-200 px-4 py-2 text-sm font-bold text-primary shadow-[0rem_0.5rem_calc(4*0.5rem)_var(--shadow-color)]">
                 SEE MORE
               </div>
             </Link>
@@ -115,7 +89,7 @@ const App = async () => {
 
           <div className="mt-5 flex justify-start lg:justify-end">
             <Link passHref href="/blogs">
-              <div className="cursor-pointer rounded-full shadow-[0rem_0.5rem_calc(4*0.5rem)_var(--shadow-color)] bg-base-200 px-4 py-2 text-sm font-bold text-primary">
+              <div className="cursor-pointer rounded-full bg-base-200 px-4 py-2 text-sm font-bold text-primary shadow-[0rem_0.5rem_calc(4*0.5rem)_var(--shadow-color)]">
                 SEE MORE
               </div>
             </Link>
