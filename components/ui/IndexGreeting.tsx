@@ -51,7 +51,7 @@ export default function IndexGreeting() {
       >
         <a
           target="_blank"
-          href="https://docs.google.com/document/d/1iH9VziBg1alVGUDiJNXevmdwpAloQVzy7Cr166hV7w0/edit?usp=sharing"
+          href="https://docs.google.com/document/d/1u4seqguuUKKOTJ5LVtZ1fiPlyxwSZVG_/edit?usp=sharing&ouid=116190949505193780477&rtpof=true&sd=true"
         >
           {/*    <Button
             classNames={{
