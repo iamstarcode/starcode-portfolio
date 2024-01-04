@@ -20,24 +20,3 @@ module.exports = withBundleAnalyzer({
     ],
   },
 });
-
-/* module.exports = withTwin({
-  reactStrictMode: false,
-  swcMinify: true,
-  experimental: { appDir: true },
-  eslint: {
-    ignoreDuringBuilds: true,
-  },
-}) */
-
-/**
- * @type {import('next').NextConfig}
- */
-/* module.exports = withTwin({
-  reactStrictMode: false,
-  swcMinify: true,
-  experimental: { appDir: true },
-  eslint: {
-    ignoreDuringBuilds: true,
-  },
-}); */
