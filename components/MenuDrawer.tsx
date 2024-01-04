@@ -14,7 +14,7 @@ import {
 import { useAtom } from 'jotai';
 import { burgerOpenedAtom } from '@/stores';
 import ClientOnly from '@/utils/clientonly';
-import DarkModeSwitch from './ThemeSwitcher';
+import ThemeSwitcher from './ThemeSwitcher';
 
 export const links = [
   {
@@ -87,7 +87,7 @@ function MenuDrawer() {
     >
       <ul className="menu space-y-2 bg-base-100 p-2 text-base-content">
         <ClientOnly>
-          <DarkModeSwitch />
+          <ThemeSwitcher />
         </ClientOnly>
         {linksJsx}
       </ul>

@@ -3,7 +3,7 @@ import MenuDrawer from '@/components/MenuDrawer';
 
 import { socials, linksJsx } from '@/components/MenuDrawer';
 import MBurger from '@/components/MBurger';
-import DarkModeSwitch from '@/components/ThemeSwitcher';
+import ThemeSwitcher from '@/components/ThemeSwitcher';
 import ClientOnly from '@/utils/clientonly';
 
 const NavBar = () => {
@@ -36,7 +36,7 @@ const NavBar = () => {
                 </ul>
                 <ul className="ml-6 inline-flex list-none items-center space-x-3 border-l border-slate-200 pl-6">
                   <ClientOnly>
-                    <DarkModeSwitch />
+                    <ThemeSwitcher />
                   </ClientOnly>
                   {socials}
                 </ul>

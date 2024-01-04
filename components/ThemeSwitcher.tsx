@@ -6,7 +6,7 @@ import { useTheme } from 'next-themes';
 import React, { useEffect, useState } from 'react';
 import { RiMoonClearFill, RiSunFill } from 'react-icons/ri';
 
-export default function DarkModeSwitch() {
+export default function ThemeSwitcher() {
   const spring = {
     type: 'spring',
     stiffness: 700,
