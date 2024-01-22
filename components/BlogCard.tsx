@@ -25,22 +25,13 @@ const BlogCard = ({
           className="h-60 rounded-tl-lg rounded-tr-lg object-cover"
         />
         <div className="space-y-2 p-4 ">
-          <h2
-            style={
-              {
-                /*  color, */
-              }
-            }
-            className=" text-xl font-bold lg:text-2xl"
-          >
-            {title}
-          </h2>
+          <h2 className=" text-xl font-bold lg:text-2xl">{title}</h2>
           <div className="inline-flex">
             <h1 className="text-sm font-bold text-slate-500">
               {`${date.toDateString().slice(3)}`}
             </h1>
           </div>
-          <h1 className="text-sm font-normal text-slate-500 lg:text-lg">
+          <h1 className="text-sm font-normal text-slate-600 lg:text-lg">
             {brief}
           </h1>
         </div>
