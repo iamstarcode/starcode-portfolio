@@ -13,9 +13,9 @@ import BlogCard from '@/components/BlogCard';
 
 const App = async () => {
   const projects: any = nProjects?.slice(0, 4);
-  const data: any = await getPosts();
+  const data: any = await getPosts(4);
 
-  const posts = data.data.user.publication.posts.slice(0, 4);
+  const posts = data.data.user.posts.edges;
 
   return (
     <>
@@ -68,22 +68,17 @@ const App = async () => {
           </div>
           <div className="mx-auto py-4 lg:max-w-5xl lg:p-8">
             <div className="grid grid-cols-1 gap-5 lg:grid-cols-2">
-              {posts?.map(
-                (
-                  { title, brief, coverImage, slug, dateAdded }: BlogProps,
-                  index: number,
-                ) => (
-                  <div key={index}>
-                    <BlogCard
-                      slug={slug}
-                      title={title}
-                      coverImage={coverImage}
-                      brief={brief}
-                      dateAdded={dateAdded}
-                    />
-                  </div>
-                ),
-              )}
+              {posts?.map(({ node }: { node: BlogProps }, index: number) => (
+                <div key={index}>
+                  <BlogCard
+                    slug={node.slug}
+                    title={node.title}
+                    coverImage={node.coverImage}
+                    brief={node.brief}
+                    publishedAt={node.publishedAt}
+                  />
+                </div>
+              ))}
             </div>
           </div>
 

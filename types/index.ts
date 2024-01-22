@@ -24,10 +24,9 @@ export interface IProject {
 }
 
 export interface BlogProps {
-  //color: string;
   brief: string;
-  coverImage: string;
+  coverImage: { url: string };
   slug: string;
   title: string;
-  dateAdded: string;
+  publishedAt: string;
 }

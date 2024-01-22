@@ -1,39 +1,44 @@
-export default async function getPosts() {
-  const variables = { page: 0 };
+export default async function getPosts(pageSize: number) {
+  const variables = { page: 1, pageSize };
   const query = `
-    query GetUserArticles($page: Int!) {
-        user(username: "iamstarcode") {
-            publication {
-                posts(page: $page) {
-                    title
-                    brief
-                    slug
-                    coverImage
-                    dateAdded
-                }
+    query GetUserArticles($page: Int!, $pageSize: Int!) {
+      user(username: "iamstarcode") {
+        posts(page: $page, pageSize: $pageSize) {
+          edges {
+            node {
+              title
+              brief
+              slug
+              coverImage {
+                url
+              }
+              publishedAt
             }
+          }
         }
+      }
     }
   `;
 
-  const res = await fetch('https://api.hashnode.com/', {
-    next: { revalidate: 60 * 1 * 60 },
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      query,
-      variables,
-    }),
-  });
+  try {
+    const res = await fetch('https://gql.hashnode.com/', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        query,
+        variables,
+      }),
+    });
 
-  await new Promise(resolve => setTimeout(resolve, 10000));
+    if (!res.ok) {
+      throw new Error(`HTTP error! Status: ${res.status}`);
+    }
 
-  if (!res.ok) {
-    // This will activate the closest `error.js` Error Boundary
-    throw new Error('Failed to fetch data');
+    const data = await res.json();
+    return data;
+  } catch (error: any) {
+    console.error('Error:', error.message);
   }
-
-  return res.json();
 }

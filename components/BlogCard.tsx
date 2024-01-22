@@ -7,13 +7,19 @@ import { siteConfig } from '@/config/site';
 
 import { BlogProps } from '../types';
 
-const BlogCard = ({ brief, coverImage, title, slug, dateAdded }: BlogProps) => {
-  const date = new Date(dateAdded);
+const BlogCard = ({
+  brief,
+  coverImage,
+  title,
+  slug,
+  publishedAt,
+}: BlogProps) => {
+  const date = new Date(publishedAt);
   return (
     <a target="_blank" href={siteConfig.links.blog + slug}>
       <div className=" h-full w-full cursor-pointer rounded-lg bg-base-200 shadow-[0rem_0.5rem_calc(4*0.5rem)_var(--shadow-color)] transition-transform duration-500 hover:scale-105">
         <Image
-          src={coverImage}
+          src={coverImage.url}
           height="300"
           width="1121"
           alt="starcode picture"

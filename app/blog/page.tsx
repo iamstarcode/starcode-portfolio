@@ -13,7 +13,7 @@ import { siteConfig } from '@/config/site';
 const awaitTimeout = (delay: number | undefined) =>
   new Promise(resolve => setTimeout(resolve, delay));
 const Projects = async () => {
-  const data: any = await getPosts();
+  const data: any = await getPosts(10);
   const posts = data.data.user.publication.posts;
   //const a = await dummYPrommis()
   //await awaitTimeout(10000);
@@ -43,22 +43,17 @@ const Projects = async () => {
 
       <Suspense fallback={<Skeleton />}>
         <div className="mt-5 grid grid-cols-1 items-center gap-5 lg:grid-cols-2">
-          {posts?.map(
-            (
-              { title, brief, coverImage, slug, dateAdded }: BlogProps,
-              index: number,
-            ) => (
-              <Basic style={{ height: '100%' }} variants={variants} key={index}>
-                <BlogCard
-                  slug={slug}
-                  title={title}
-                  coverImage={coverImage}
-                  brief={brief}
-                  dateAdded={dateAdded}
-                />
-              </Basic>
-            ),
-          )}
+          {posts?.map(({ node }: { node: BlogProps }, index: number) => (
+            <Basic style={{ height: '100%' }} variants={variants} key={index}>
+              <BlogCard
+                slug={node.slug}
+                title={node.title}
+                coverImage={node.coverImage}
+                brief={node.brief}
+                publishedAt={node.publishedAt}
+              />
+            </Basic>
+          ))}
 
           <a href={siteConfig.links.blog} target="_blank">
             <div className="cursor-pointer rounded-full bg-base-200 px-4 py-2 text-sm font-bold text-primary">
