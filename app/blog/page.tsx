@@ -14,9 +14,7 @@ const awaitTimeout = (delay: number | undefined) =>
   new Promise(resolve => setTimeout(resolve, delay));
 const Projects = async () => {
   const data: any = await getPosts(10);
-  const posts = data.data.user.publication.posts;
-  //const a = await dummYPrommis()
-  //await awaitTimeout(10000);
+  const posts = data?.data?.user?.posts?.edges;
 
   const variants = {
     hidden: {
@@ -54,13 +52,12 @@ const Projects = async () => {
               />
             </Basic>
           ))}
-
-          <a href={siteConfig.links.blog} target="_blank">
-            <div className="cursor-pointer rounded-full bg-base-200 px-4 py-2 text-sm font-bold text-primary">
-              SEE MORE @ {siteConfig.links.blog}
-            </div>
-          </a>
         </div>
+        <a href={siteConfig.links.blog} target="_blank">
+          <div className="mt-6 cursor-pointer rounded-full py-2 text-sm font-bold text-primary">
+            SEE MORE @ {siteConfig.links.blog}
+          </div>
+        </a>
       </Suspense>
     </div>
   );

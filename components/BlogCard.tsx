@@ -37,7 +37,7 @@ const BlogCard = ({
             {title}
           </h2>
           <div className="inline-flex">
-            <h1 className="text-sm font-normal text-slate-500">
+            <h1 className="text-sm font-bold text-slate-500">
               {`${date.toDateString().slice(3)}`}
             </h1>
           </div>

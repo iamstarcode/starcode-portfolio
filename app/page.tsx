@@ -14,8 +14,7 @@ import BlogCard from '@/components/BlogCard';
 const App = async () => {
   const projects: any = nProjects?.slice(0, 4);
   const data: any = await getPosts(4);
-
-  const posts = data.data.user.posts.edges;
+  const posts = data?.data?.user?.posts?.edges;
 
   return (
     <>
