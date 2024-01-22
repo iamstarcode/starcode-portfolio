@@ -1,9 +1,11 @@
 import { IProject } from '../types';
 
+import { siteConfig } from '@/config/site';
+
 const projects: IProject[] = [
   {
     id: 'my-portfolio',
-    title: 'Iamstarcode.com',
+    title: 'iamstarcode.com',
     subtitle: 'My portfolio website',
     about:
       'This website, where I dump some of the works have worked on, and where I test out new things',
@@ -44,7 +46,7 @@ const projects: IProject[] = [
     subtitle: 'Pets app',
     about: 'A simple website consuming a Pets API',
     link: '/projects/petly',
-    live_url: 'petly.iamstarcode.com',
+    live_url: `https://petly.${siteConfig.links.site}`,
     platforms: ['WEB'],
     year: '2021',
     color: `#0D75FF`,
@@ -78,7 +80,7 @@ const projects: IProject[] = [
     subtitle: 'A simple dictionary',
     about: 'A simple dictionary using dictionary API',
     link: '/projects/wordlens',
-    live_url: 'wordlens.iamstarcode.com/',
+    live_url: `https://wordlens.${siteConfig.links.site}`,
     platforms: ['WEB'],
     year: '2021',
     color: `#000000`,
@@ -89,6 +91,22 @@ const projects: IProject[] = [
       '/img/projects/wordlens-0.png',
     ],
     repo: 'https://github.com/iamstarcode/wordlens',
+  },
+
+  {
+    id: 'frontend-mentor-e-commerce',
+    title: 'Product Page',
+    subtitle: 'An e-commerce product page',
+    about: 'A frontendmentor.com challenge written in Vue',
+    link: '/projects/frontend-mentor-e-commerce',
+    live_url: 'starcode-dev.netlify.app/e-commerce',
+    platforms: ['WEB'],
+    year: '2021',
+    color: '#ff7d1a',
+    stack: ['Vue', 'TailwindCSS'],
+    cover: '/img/projects/frontend-mentor-e-commerce-cover.png',
+    images: ['/img/projects/frontend-mentor-e-commerce-cover.png'],
+    repo: 'https://github.com/iamstarcode/e-commerce',
   },
 
   {

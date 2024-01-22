@@ -133,19 +133,24 @@ const Project = () => {
                 <ImArrowLeft2 size="28" />
               </Link>
             </div>
-            <section className="h-full w-full mt-5 lg:flex lg:flex-row">
+            <section className="mt-5 h-full w-full lg:flex lg:flex-row">
               <div className="lg:w-[50%]">
-                <h2 className="font-size[2.65rem] mt-2" style={{ color: project.color }}>
+                <h2
+                  className="font-size[2.65rem] mt-2"
+                  style={{ color: project.color }}
+                >
                   {project.title}
                 </h2>
-                <h2 className=" text-lg leading-5 text-text-color lg:text-xl my-3" style={{ color: project.color }}>
+                <h2
+                  className=" text-text-color my-3 text-lg leading-5 lg:text-xl"
+                  style={{ color: project.color }}
+                >
                   {project.about}
                 </h2>
 
                 <a
-                  href={'https://' + project.live_url}
+                  href={project.live_url}
                   className=" inline-flex space-x-2"
-
                   target="_blank"
                 >
                   <BsLink45Deg size="24" />
@@ -153,12 +158,12 @@ const Project = () => {
                 </a>
               </div>
 
-              <div className="w-full xxs:h-[12rem] xs:h-[14rem] s:h-[15.5rem]  sm:h-[20rem] lg:h-[25rem] sm:w-[50%] lg:h-[19rem] xl:h-[25rem]">
+              <div className="w-full xxs:h-[12rem] xs:h-[14rem] s:h-[15.5rem]  sm:h-[20rem] sm:w-[50%] lg:h-[19rem] lg:h-[25rem] xl:h-[25rem]">
                 <Carousel
                   withIndicators={true}
                   withControls={false}
                   getEmblaApi={setEmbla}
-                  className="shadow-[0rem_0.5rem_calc(4*0.5rem)_var(--shadow-color)] rounded-lg"
+                  className="rounded-lg shadow-[0rem_0.5rem_calc(4*0.5rem)_var(--shadow-color)]"
                   classNames={
                     {
                       //root: 'w-full xxs:h-[12rem] xs:h-[14rem] s:h-[15.5rem] sm:h-[20rem] lg:h-[25rem] sm:w-[50%] lg:h-[19rem] xl:h-[25rem]',
@@ -188,7 +193,7 @@ const Project = () => {
           </Basic>
 
           <Basic variants={variants}>
-            <section className="flex flex-col space-y-4 mt-6">
+            <section className="mt-6 flex flex-col space-y-4">
               <div className="inline-flex items-center space-x-2">
                 <h2 className="font-bold">Year:</h2>
                 <Badge size="lg" className="bg-primary text-primary-content">
@@ -211,11 +216,11 @@ const Project = () => {
               </div>
               <div className="block">
                 <h2 className="font-bold">Stack:</h2>
-                <div className="w-full -mt-1 flex flex-wrap space-y-2 items-baseline">
+                <div className="-mt-1 flex w-full flex-wrap items-baseline space-y-2">
                   {project.stack.map((tool: any, index: number) => (
                     <div
                       key={index}
-                      className={`inline-flex items-center mr-2  `}
+                      className={`mr-2 inline-flex items-center  `}
                     >
                       <Badge
                         pl={2}
@@ -238,9 +243,9 @@ const Project = () => {
                   ))}
                 </div>
 
-                <div className="inline-flex items-center space-x-4 mt-3">
+                <div className="mt-3 inline-flex items-center space-x-4">
                   <h2 className="text-text-color font-medium">Source:</h2>
-                  <div className="p-2 cursor-pointer flex space-x-2 text-sm justify-center items-center bg-base-100 box-shadow[ 0rem 0.5rem calc(4 * 0.5rem) var(--shadow-color)] rounded-lg" >
+                  <div className="box-shadow[ 0rem 0.5rem calc(4 * 0.5rem) var(--shadow-color)] flex cursor-pointer items-center justify-center space-x-2 rounded-lg bg-base-100 p-2 text-sm">
                     {project.repo ? (
                       <a href={project.repo} target="_blank">
                         <SiGithub size="24" />

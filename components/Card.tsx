@@ -6,10 +6,9 @@ import Image from 'next/image';
 import { ICardProps } from '../types';
 
 const Card = ({ link, cover, color, subtitle, title }: ICardProps) => {
-  //console.log(color);
   return (
     <Link href={link}>
-      <div className="overflow-hidden w-full h-full shadow-[0rem_0.5rem_calc(4*0.5rem)_var(--shadow-color)] rounded-lg transition-transform duration-500 hover:scale-105 cursor-pointer">
+      <div className="h-full w-full cursor-pointer overflow-hidden rounded-lg shadow-[0rem_0.5rem_calc(4*0.5rem)_var(--shadow-color)] transition-transform duration-500 hover:scale-105">
         <Image src={cover} height="300" width="1121" alt="starcode picture" />
         <div className="bg-base-200 p-3">
           <h2
