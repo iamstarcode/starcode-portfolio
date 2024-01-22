@@ -10,8 +10,6 @@ import { Basic } from '@/components/animations/Basic';
 
 import { siteConfig } from '@/config/site';
 
-const awaitTimeout = (delay: number | undefined) =>
-  new Promise(resolve => setTimeout(resolve, delay));
 const Projects = async () => {
   const data: any = await getPosts(10);
   const posts = data?.data?.user?.posts?.edges;
