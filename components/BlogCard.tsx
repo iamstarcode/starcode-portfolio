@@ -22,7 +22,7 @@ const BlogCard = ({
           height="300"
           width="1121"
           alt="starcode picture"
-          className="rounded-tl-lg rounded-tr-lg"
+          className="h-60 rounded-tl-lg rounded-tr-lg object-cover"
         />
         <div className="space-y-2 p-4 ">
           <h2
