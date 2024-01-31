@@ -22,6 +22,7 @@ export default async function getPosts(pageSize: number) {
 
   try {
     const res = await fetch('https://gql.hashnode.com/', {
+      next: { revalidate: 3600 },
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
