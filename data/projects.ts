@@ -30,7 +30,7 @@ const projects: IProject[] = [
     about:
       'Kingscard is one of the most trusted online trading platforms in Nigeria',
     link: '/projects/kings-card',
-    live_url: 'kingcards.ng',
+    live_url: 'https://kingcards.ng',
     platforms: ['WEB', 'MOBILE'],
     year: '2022',
     color: 'rgb(29 78 216)',

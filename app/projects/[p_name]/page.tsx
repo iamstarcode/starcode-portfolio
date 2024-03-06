@@ -158,7 +158,7 @@ const Project = () => {
                 </a>
               </div>
 
-              <div className="w-full xxs:h-[12rem] xs:h-[14rem] s:h-[15.5rem]  sm:h-[20rem] sm:w-[50%] lg:h-[19rem] lg:h-[25rem] xl:h-[25rem]">
+              <div className="w-full xxs:h-[12rem] xs:h-[14rem] s:h-[15.5rem]  sm:h-[20rem] sm:w-[50%] lg:h-[19rem] xl:h-[25rem]">
                 <Carousel
                   withIndicators={true}
                   withControls={false}
