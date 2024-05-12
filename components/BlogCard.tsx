@@ -14,6 +14,7 @@ const BlogCard = ({
   publishedAt,
 }: BlogProps) => {
   const date = new Date(publishedAt);
+
   return (
     <a target="_blank" href={siteConfig.links.blog + slug}>
       <div className=" h-full w-full cursor-pointer rounded-lg bg-base-200 shadow-[0rem_0.5rem_calc(4*0.5rem)_var(--shadow-color)] transition-transform duration-500 hover:scale-105">

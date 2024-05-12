@@ -1,7 +1,7 @@
 export default async function getPosts(pageSize: number) {
   const variables = { page: 1, pageSize };
   const query = `
-    query GetUserArticles($page: Int!, $pageSize: Int!) {
+    query GetArticles($page: Int!, $pageSize: Int!) {
       user(username: "iamstarcode") {
         posts(page: $page, pageSize: $pageSize) {
           edges {
@@ -21,7 +21,7 @@ export default async function getPosts(pageSize: number) {
   `;
 
   try {
-    const res = await fetch('https://gql.hashnode.com/', {
+    const res = await fetch('https://gql.hashnode.com', {
       next: { revalidate: 3600 },
       method: 'POST',
       headers: {
